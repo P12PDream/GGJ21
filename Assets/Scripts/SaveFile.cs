@@ -19,6 +19,8 @@ public class SaveData {
     public int statPoints = 0;
     public int enemiesKilled = 0;
     public int totalDeaths = 0;
+
+    public int currentMaxCombo = 1;
 }
 
 public class SaveFile : MonoBehaviour
@@ -53,6 +55,7 @@ public class SaveFile : MonoBehaviour
             loadedSave.attackDamage = data.attackDamage;
             loadedSave.attackSpeed = data.attackSpeed;
             loadedSave.coldResistance = data.coldResistance;
+            loadedSave.currentMaxCombo = data.currentMaxCombo;
             file.Close();
         } else
         {
@@ -92,6 +95,7 @@ public class SaveFile : MonoBehaviour
         data.attackDamage = loadedSave.attackDamage;
         data.attackSpeed = loadedSave.attackSpeed;
         data.coldResistance = loadedSave.coldResistance;
+        data.currentMaxCombo = loadedSave.currentMaxCombo;
 
         bf.Serialize(file, data);
         file.Close();

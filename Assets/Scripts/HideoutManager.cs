@@ -19,6 +19,10 @@ public class HideoutManager : MonoBehaviour
     public Button healthButton;
     public Button movementButton;
     public Button attackPowerButton;
+    public Button comboRewardButton;
+
+    public int comboRewardChance; //in %
+    
 
     void Start()
     {
@@ -32,6 +36,7 @@ public class HideoutManager : MonoBehaviour
         healthButton.onClick.AddListener(UpgradeHealth);
         movementButton.onClick.AddListener(UpgradeMovementSpeed);
         attackPowerButton.onClick.AddListener(UpgradeAttackPower);
+        comboRewardButton.onClick.AddListener(UpgradeCombo);
         UpdateStats();
 
     }
@@ -42,6 +47,13 @@ public class HideoutManager : MonoBehaviour
         currHealthText.text = statsFile.loadedSave.maxHealth.ToString();
         attackPowerText.text = statsFile.loadedSave.attackDamage.ToString();
         movementSpeedText.text = statsFile.loadedSave.movementSpeed.ToString();
+        if(Random.Range(0, 100) < comboRewardChance && statsFile.loadedSave.currentMaxCombo < 3)
+        {
+            comboRewardButton.gameObject.SetActive(true);
+        } else
+        {
+            comboRewardButton.gameObject.SetActive(false);
+        }
         if(statsFile.loadedSave.statPoints == 0)
         {
             upgradePanel.SetActive(false);
@@ -57,6 +69,12 @@ public class HideoutManager : MonoBehaviour
         
     }
 
+    public void UpgradeCombo()
+    {
+        statsFile.loadedSave.currentMaxCombo += 1;
+        statsFile.loadedSave.statPoints -= 1;
+        UpdateStats();
+    }
     public void UpgradeAttackPower()
     {
         statsFile.loadedSave.attackDamage += 1;

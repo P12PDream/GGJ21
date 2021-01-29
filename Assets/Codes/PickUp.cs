@@ -18,7 +18,7 @@ public class PickUp : MonoBehaviour
             switch (type)
             {
                 case PickUpType.OrbShield:
-                    pc.AddShieldOrbs((int)value);
+                    //pc.AddShieldOrbs((int)value);
                     pc.score += 250;
                     break;
                 case PickUpType.Heal:
@@ -43,7 +43,6 @@ public class PickUp : MonoBehaviour
                     pc.score += 250;
                     break;
                 case PickUpType.Shield:
-                    pc.hasShield = true;
                     pc.score += 350;
                     break;
             }

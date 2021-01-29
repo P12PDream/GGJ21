@@ -41,74 +41,14 @@ public class PlayerController : MonoBehaviour
     public List<AudioClip> clips = new List<AudioClip>();
     public AudioSource bgMusic;
 
-    public ShieldOrb soPrefab;
-
     private Animator m_anim;
-
-    public Weapon CurWeapon;
-
-    public bool hasShield;
-
-    public Sprite[] playerHps;
-    public Image playerHp;
-    private Canvas m_playerUI;
-    public ParticleSystem swordTrail;
 
     public Image playerDash;
     private float dashTimerForUI;
 
-    public Sprite playerIcon;
-    private Image playerIconIMG;
-    private Image playerIconCD;
-
-    private Image hasWepPickup;
-    private Image hasOrbPickup;
-    private Image hasShieldPickup;
-
-    private Text roomText;
-    private Text scoreText;
-    private Text cleanseText;
-    private Text deadText;
-    private Text nameText;
-    private Text endingText;
-
     private Stats m_stats;
 
-    public bool isWizard;
 
-
-
-    public string[] firstNames = new string[] {
-
-        "James",
-        "Paul",
-        "Ian",
-        "George",
-        "Harry"
-
-    };
-
-
-    public string[] lastNames = new string[]
-    {
-
-        "Lankshire",
-        "Smith",
-        "Yorkshire",
-        "Brown",
-        "York",
-        "Tamworth",
-        "Oxford"
-
-    };
-
-    public bool HasGun
-    {
-        get
-        {
-            return GetComponent<Gun>() != null;
-        }
-    }
     private void Awake()
     {
         m_transform = transform;
@@ -117,43 +57,11 @@ public class PlayerController : MonoBehaviour
         m_playerCamera = FindObjectOfType<Camera>();
         m_anim = GetComponentInChildren<Animator>();
         m_stats = GetComponent<Stats>();
-
-        Canvas[] cvs = FindObjectsOfType<Canvas>();
-        for(int i = 0; i < cvs.Length; i++)
-        {
-            if (cvs[i].name == "PlayerUI")
-            {
-                m_playerUI = cvs[i];
-                break;
-            }   
-        }
-
-        playerHp = m_playerUI.transform.GetChild(0).GetComponent<Image>();
-        playerDash = m_playerUI.transform.GetChild(1).GetComponent<Image>();
-        playerIconIMG = m_playerUI.transform.GetChild(2).GetComponent<Image>();
-        playerIconCD = m_playerUI.transform.GetChild(3).GetComponent<Image>();
-
-        hasWepPickup = playerIconIMG.transform.GetChild(0).GetComponent<Image>();
-        hasOrbPickup = playerIconIMG.transform.GetChild(1).GetComponent<Image>();
-        hasShieldPickup = playerIconIMG.transform.GetChild(2).GetComponent<Image>();
-        roomText = m_playerUI.transform.GetChild(4).GetComponent<Text>();
-        scoreText = m_playerUI.transform.GetChild(5).GetComponent<Text>();
-        cleanseText = m_playerUI.transform.GetChild(6).GetComponent<Text>();
-        deadText = m_playerUI.transform.GetChild(7).GetComponent<Text>();
-        nameText = m_playerUI.transform.GetChild(8).GetComponent<Text>();
-        endingText = m_playerUI.transform.GetChild(9).GetComponent<Text>();
-
-        playerIconIMG.sprite = playerIcon;
-        ShowDeadScreen(false);
-
-        heroName = GetName();
-        nameText.text = heroName;
     }
 
     private void Start()
     {
-        //UpdateHealthImage();
-        //AddShieldOrbs(3);
+
     }
 
     void FixedUpdate()
@@ -193,40 +101,10 @@ public class PlayerController : MonoBehaviour
         if (dashTimerForUI < dashCooldown)
             dashTimerForUI += Time.deltaTime;
 
-        UpdateDashImage();
-        UpdatePlayerIconCD();
-        UpdatePickupsUI();
-        UpdateScoreText("Score " + score);
+        if(playerDash != null)
+            UpdateDashImage();
 
-        //SHOOTING & SPELLS
-        if (CurWeapon.GetType() == typeof(Gun))
-        {
-            //primary fire
-            if (Input.GetKeyDown(KeyCode.Mouse0) && CurWeapon != null)
-            {
-                Gun gun = (Gun)CurWeapon;
-                if(gun.canShoot)
-                {
-                    gun.Shoot(m_transform);
-                    if (m_anim != null)
-                        m_anim.SetTrigger("Shoot");
-                } 
-            }
-
-            //aoe shooting thing
-            if (Input.GetKeyDown(KeyCode.Mouse1) && CurWeapon != null)
-            {
-                Gun gun = (Gun)CurWeapon;
-                if(gun.canShoot2)
-                {
-                    gun.Shoot2(m_transform);
-                    if (m_anim != null)
-                        m_anim.SetTrigger("Shoot2");
-                }
-            }
-        }
-        //MELEE
-        else if (CurWeapon.GetType() == typeof(Sword))
+        /*if (CurWeapon.GetType() == typeof(Sword))
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) && CurWeapon != null)
             {
@@ -238,29 +116,7 @@ public class PlayerController : MonoBehaviour
                     SoundManager.PlayASource("Swing");
                 }
             }
-
-            //press
-            if (Input.GetKeyDown(KeyCode.Mouse1) && CurWeapon != null)
-            {
-                Sword sword = (Sword)CurWeapon;
-                sword.canDealDamage = true;
-                m_anim.SetBool("bladestorm", true);
-                canDash = false;
-                swordTrail.Play();
-                //TODO: Loop swirl sound
-
-            }
-            //release
-            if (Input.GetKeyUp(KeyCode.Mouse1) && CurWeapon != null)
-            {
-                Sword sword = (Sword)CurWeapon;
-                sword.canDealDamage = false;
-                m_anim.SetBool("bladestorm", false);
-
-                canDash = true;
-                swordTrail.Stop();
-            }
-        }
+        }*/
 
         if (m_anim != null)
             m_anim.SetFloat("Speed", Mathf.Abs(m_move.magnitude) );
@@ -345,25 +201,10 @@ public class PlayerController : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(m_mousePos);
     }
 
-    public void AddShieldOrbs(int amount)
-    {
-        StartCoroutine(WaitSpawnShieldOrbs(amount));
-    }
-
-    private IEnumerator WaitSpawnShieldOrbs(int amount)
-    {
-        for (int i = 0; i < amount; i++)
-        {
-            ShieldOrb so = Instantiate(soPrefab, m_transform);
-            so.owner = m_transform;
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
-
     public void UpdateHealthImage()
     {
         int hp = (int)m_stats.health;
-        playerHp.sprite = playerHps[hp];
+        //playerHp.sprite = playerHps[hp];
     }
 
     public void UpdateDashImage()
@@ -371,50 +212,10 @@ public class PlayerController : MonoBehaviour
         playerDash.fillAmount = dashTimerForUI / dashCooldown;
     }
 
-    public void UpdatePlayerIconCD()
-    {
-        //this might be very inefficient check to be called in update.. but its jam game and im in hurry
-        if(CurWeapon != null && CurWeapon.GetType() == typeof(Gun))
-        {
-            Gun gun = (Gun)CurWeapon;
-            playerIconCD.fillAmount = 1 - (gun.GetShoot2Timer / gun.shoot2Delay);
-        }
-    }
-
-
-
-    public void UpdatePickupsUI()
-    {
-        if (GetComponentInChildren<ShieldOrb>() != null)
-            hasOrbPickup.gameObject.SetActive(true);
-        else
-            hasOrbPickup.gameObject.SetActive(false);
-
-        if(CurWeapon.GetType() == typeof(Gun))
-        {
-            Gun gun = (Gun)CurWeapon;
-            if (gun.upgradeLvl > 0)
-                hasWepPickup.gameObject.SetActive(true);
-            else
-                hasWepPickup.gameObject.SetActive(false);
-        }
-
-        if (hasShield)
-            hasShieldPickup.gameObject.SetActive(true);
-        else
-            hasShieldPickup.gameObject.SetActive(false);
-    }
-
     public void Dead()
     {
-        ShowDeadScreen(true);
-
         m_anim.SetTrigger("Death");
         AllowMovement = false;
-
-        //needed to stop spin animation
-        if (CurWeapon != null && CurWeapon.GetType() == typeof(Sword))
-            m_anim.SetBool("bladestorm", false);
 
         if (GetComponent<Gun>())
             GetComponent<Gun>().enabled = false;
@@ -423,38 +224,4 @@ public class PlayerController : MonoBehaviour
             GetComponentInChildren<Sword>().enabled = false;
     }
 
-    public void UpdateRoomText(string txt)
-    {
-        roomText.text = txt;
-    }
-
-    public void UpdateScoreText(string txt)
-    {
-        scoreText.text = txt;
-    }
-
-    public void SetCleanseText(bool val)
-    {
-        cleanseText.gameObject.SetActive(val);
-    }
-
-    public void ShowDeadScreen(bool val)
-    {
-        deadText.gameObject.SetActive(val);
-    }
-
-    public void UpdateEndingText(string txt)
-    {
-        endingText.text = txt;
-    }
-
-    public void UpdateDeadText(string txt)
-    {
-        deadText.text = txt;
-    }
-
-    public string GetName()
-    {
-        return firstNames[Random.Range(0, firstNames.Length)] + " " + lastNames[Random.Range(0, lastNames.Length)];
-    }
 }

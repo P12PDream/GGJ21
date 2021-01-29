@@ -69,10 +69,7 @@ public class Gun : Weapon
 
             if (GetComponent<PlayerController>())
             {
-                if (!GetComponent<PlayerController>().isWizard)
-                    SoundManager.PlayASource("PlayerShoot");
-                else
-                    SoundManager.PlayASource("Spell");
+                SoundManager.PlayASource("Spell");
             }
 
             if (upgradeLvl == 0)

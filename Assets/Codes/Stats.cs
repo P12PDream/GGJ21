@@ -28,11 +28,6 @@ public class Stats : MonoBehaviour
         {
             SoundManager.PlayASource("TakeDamage");
             PlayerController pc = GetComponent<PlayerController>();
-            if(pc.hasShield)
-            {
-                pc.hasShield = false;
-                return;
-            }
         }
 
         health -= dmg;

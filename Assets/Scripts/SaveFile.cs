@@ -4,9 +4,10 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System;
+using System.Reflection;
 
 [Serializable]
-class SaveData {
+public class SaveData {
     public float maxHealth = 100;
     public float movementSpeed = 5;
     public float eatSpeed = 5;
@@ -27,9 +28,9 @@ public class SaveFile : MonoBehaviour
     public int testVar;
 
     [SerializeField]
-    SaveData loadedSave;
+    public SaveData loadedSave;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         LoadStats();
     }
@@ -41,6 +42,7 @@ public class SaveFile : MonoBehaviour
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(saveFileName, FileMode.Open);
             SaveData data = (SaveData)bf.Deserialize(file);
+
             loadedSave.mapsFinished = data.mapsFinished;
             loadedSave.enemiesKilled = data.enemiesKilled;
             loadedSave.statPoints = data.statPoints;

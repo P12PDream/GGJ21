@@ -112,7 +112,6 @@ public class SaveFile : MonoBehaviour
         loadedSave.attackDamage += save.attackDamage;
         loadedSave.attackSpeed += save.attackSpeed;
         loadedSave.coldResistance += save.coldResistance;
-        loadedSave.currentMaxCombo += save.currentMaxCombo;
         SaveStats();
     }
 

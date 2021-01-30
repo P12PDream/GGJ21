@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,15 +20,15 @@ public class GameManager : MonoBehaviour
 
     private SaveFile saveFile;
 
-    private SaveData thisSessionProgress;
+    public SaveData thisSessionProgress;
 
     public bool isExtracting = false;
-
-    private ExtractPoint ePoint;
 
     private Stats stats;
     private PlayerController pController;
 
+    public Text extractionTest;
+    public GameObject extractionPanel;
 
     void Awake()
     {
@@ -53,29 +54,29 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-
-        thisSessionProgress.statPoints += 1;
         if (isExtracting)
         {
+            extractionPanel.SetActive(true);
+            extractionTest.text = "Extraction in " + (5f - timer).ToString("F2");
             timer += 1 * Time.deltaTime;
             print("extracting .. " + timer.ToString());
-            if(timer >= extractionTime)
+            if(timer >= extractionTime && isExtracting)
             {
-                isExtracting = false;
+                extractionPanel.SetActive(false);
                 StartCoroutine(ExtractSuccess());
             }
+        } else
+        {
+            extractionPanel.SetActive(false);
         }
     }
 
     IEnumerator ExtractSuccess()
     {
-        saveFile.AddProgress(thisSessionProgress);
-        saveFile.SaveStats();
         yield return new WaitForSeconds(0.5f);
         //fade screen black and go to hideout
-
+        saveFile.AddProgress(thisSessionProgress);
+        saveFile.SaveStats();
         SceneManager.LoadScene("Hideout");
     }
 }

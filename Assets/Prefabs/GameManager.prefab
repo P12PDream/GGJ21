@@ -47,4 +47,6 @@ MonoBehaviour:
   coldTemperature: 0
   extractPoints: []
   extractionTime: 5
-  player: {fileID: 0}
+  timer: 0
+  player: {fileID: 8984004113760615288, guid: 4702c7626b406e24e84e795ad184e26d, type: 3}
+  isExtracting: 0

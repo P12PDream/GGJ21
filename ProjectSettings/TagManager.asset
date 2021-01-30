@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - FSM
+  - extract point
   layers:
   - Default
   - TransparentFX

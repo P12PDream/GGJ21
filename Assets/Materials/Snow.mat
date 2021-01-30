@@ -84,11 +84,11 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
-    - _SnowHeight: 0.42
-    - _SnowLimit: 0
-    - _SnowNormalMul: 0.327
-    - _SnowShading: 0
-    - _SnowTessalation: 7
+    - _SnowHeight: 1.1
+    - _SnowLimit: 0.315
+    - _SnowNormalMul: 0.886
+    - _SnowShading: 0.262
+    - _SnowTessalation: 65.6
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0

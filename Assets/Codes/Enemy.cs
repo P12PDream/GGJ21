@@ -60,6 +60,7 @@ public class Enemy : MonoBehaviour
         if(isEnabled)
         {
             DoLogic();
+            DoIdle();
             UpdateHealthBar();
         }    
     }
@@ -187,6 +188,11 @@ public class Enemy : MonoBehaviour
                     m_anim.SetFloat("Speed", Mathf.Abs((lastSeenSpot - transform.position).normalized.magnitude));
 
             }
+            else
+            {
+                if (m_anim != null)
+                    m_anim.SetFloat("Speed", 0);
+            }
         }
 
         if(transform.position.y < -20)
@@ -194,6 +200,28 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
             
+    }
+
+    public void DoIdle()
+    {
+        if (chase)
+            return;
+
+        if (waiting)
+            return;
+
+        transform.Rotate(transform.rotation.x, Random.Range(0, 360), transform.rotation.z);
+
+        StartCoroutine(AIDelay(Random.Range(0, 5)));
+    }
+
+    private bool waiting = false;
+
+    IEnumerator AIDelay(float delay)
+    {
+        waiting = true;
+        yield return new WaitForSeconds(delay);
+        waiting = false;
     }
 
     public void DoLogic()
@@ -223,8 +251,12 @@ public class Enemy : MonoBehaviour
 
         Debug.DrawLine(transform.position, hit.point, Color.red);
 
-        if(hit.collider != null && hit.collider.gameObject != null 
-            && hit.collider.gameObject == pc.gameObject && Vector3.Distance(transform.position, pc.transform.position) <= detectDistance)
+        Vector3 targetDir = pc.transform.position - transform.position;
+        float angleToPlayer = (Vector3.Angle(targetDir, transform.forward));
+
+        if (hit.collider != null && hit.collider.gameObject != null 
+            && hit.collider.gameObject == pc.gameObject && Vector3.Distance(transform.position, pc.transform.position) <= detectDistance
+            && angleToPlayer >= -90 && angleToPlayer <= 90)
         {
             chase = true;
             lastSeenSpot = pc.transform.position;

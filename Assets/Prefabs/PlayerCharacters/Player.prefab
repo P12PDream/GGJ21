@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 8867277558920959578}
   - component: {fileID: 359670475619979531}
   - component: {fileID: 572824868221639775}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,6 @@ MonoBehaviour:
   canDealDamage: 0
   saveFile: {fileID: 0}
   gameManager: {fileID: 0}
-  isEnemy: 0
 --- !u!1 &2213693651848599293
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +224,7 @@ GameObject:
   - component: {fileID: 4429607148323731701}
   - component: {fileID: 6358700980915760318}
   - component: {fileID: 5169014009745986568}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +329,6 @@ MonoBehaviour:
   canDealDamage: 0
   saveFile: {fileID: 0}
   gameManager: {fileID: 0}
-  isEnemy: 0
 --- !u!1 &5607469178683554782
 GameObject:
   m_ObjectHideFlags: 0

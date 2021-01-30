@@ -70,6 +70,9 @@ public class Stats : MonoBehaviour
             GetComponent<Enemy>().isEnabled = false;
             GetComponent<Enemy>().isEatable = true;
 
+            if(GetComponentInChildren<Light>())
+                GetComponentInChildren<Light>().gameObject.SetActive(false);
+
 
             FindObjectOfType<PlayerController>().score += scoreOnDeath;
 

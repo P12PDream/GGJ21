@@ -63,12 +63,6 @@ public class SaveFile : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        loadedSave.mapsFinished += 1;
-        testVar = loadedSave.mapsFinished;
-    }
-
     public void NewSave()
     {
         loadedSave = new SaveData();

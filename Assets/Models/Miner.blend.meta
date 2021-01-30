@@ -1,26 +1,11 @@
 fileFormatVersion: 2
-guid: 7291e75e3b03ec945836e160d476c3f3
+guid: ef79f0a2e98013144b97ae3193a38aef
 ModelImporter:
-  serializedVersion: 19301
-  internalIDToNameTable:
-  - first:
-      74: -8784756445205269088
-    second: Armature.001|Armature.001|Armature|attack|Armature|attack
-  - first:
-      74: -5363706408893898685
-    second: Armature.001|Armature.001|Armature|Idle|Armature|Idle
-  - first:
-      74: -7582851641595058881
-    second: Armature.001|Armature.001|Armature|run|Armature|run
-  - first:
-      74: 7138479009376063992
-    second: Armature.001|Armature.001|Armature|walk|Armature|walk
-  - first:
-      74: 7874570666074877753
-    second: Armature.001|attack
+  serializedVersion: 20200
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
-    materialImportMode: 1
+    materialImportMode: 2
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -64,6 +49,7 @@ ModelImporter:
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
@@ -73,6 +59,9 @@ ModelImporter:
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
@@ -106,6 +95,7 @@ ModelImporter:
   animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

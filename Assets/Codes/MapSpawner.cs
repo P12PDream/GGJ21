@@ -64,9 +64,11 @@ public class MapSpawner : MonoBehaviour
             tree.transform.position = new Vector3(Random.Range(forestAreaStart.x, forestAreaEnd.x), 0,
                                                   Random.Range(forestAreaStart.z, forestAreaEnd.z));
 
-            tree.transform.localScale = new Vector3(tree.transform.localScale.x * Random.Range(0.7f, 1),
+            tree.transform.localScale = new Vector3(tree.transform.localScale.x * Random.Range(0.2f, .5f),
                                                     tree.transform.localScale.y * Random.Range(0.5f, 1.5f),
-                                                    tree.transform.localScale.z * Random.Range(0.7f, 1));
+                                                    tree.transform.localScale.z * Random.Range(0.2f, .5f));
+
+            tree.transform.Rotate(0, Random.Range(0, 180), 0);
         }
     }
 

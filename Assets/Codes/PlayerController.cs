@@ -69,7 +69,8 @@ public class PlayerController : MonoBehaviour
         if (AllowMovement)
         {
             DoMovement();
-            Rotate((MouseDir() - m_transform.position).normalized);
+            Rotate(m_move);
+            //Rotate((MouseDir() - m_transform.position).normalized);
         }
     }
 
@@ -95,6 +96,7 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine(Dash());
                 dashTimerForUI = 0;
+                m_anim.SetTrigger("Charge");
             }     
         }
 

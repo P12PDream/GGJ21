@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
+    public GameObject map;
+    public float size;
+    public Camera snowCam;
+
     public GameObject[] tilesetPrefabs;
 
     public int rowCount = 5;
@@ -20,7 +24,14 @@ public class Map : MonoBehaviour
 
     public void Start()
     {
-        GenerateMap(rowCount, columnCount);
+        //GenerateMap(rowCount, columnCount);
+        GenerateMap(size);
+    }
+
+    public void GenerateMap(float width)
+    {
+        map.transform.localScale = new Vector3(width, 1, width);
+        snowCam.orthographicSize = width/2;
     }
 
     public GameObject GetTile(int id)

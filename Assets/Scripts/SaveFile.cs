@@ -68,6 +68,9 @@ public class SaveFile : MonoBehaviour
     public void NewSave()
     {
         loadedSave = new SaveData();
+        loadedSave.movementSpeed = 5;
+        loadedSave.maxHealth = 100;
+        //add other default/starting stats here
     }
 
     private void OnApplicationQuit()
@@ -110,6 +113,7 @@ public class SaveFile : MonoBehaviour
         loadedSave.attackSpeed += save.attackSpeed;
         loadedSave.coldResistance += save.coldResistance;
         loadedSave.currentMaxCombo += save.currentMaxCombo;
+        SaveStats();
     }
 
 }

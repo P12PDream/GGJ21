@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public bool AllowMovement;
@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
 
     private Stats m_stats;
 
-
     private void Awake()
     {
         m_transform = transform;
@@ -57,11 +56,6 @@ public class PlayerController : MonoBehaviour
         m_playerCamera = FindObjectOfType<Camera>();
         m_anim = GetComponentInChildren<Animator>();
         m_stats = GetComponent<Stats>();
-    }
-
-    private void Start()
-    {
-
     }
 
     void FixedUpdate()
@@ -82,7 +76,7 @@ public class PlayerController : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.R))
             {
-                Application.LoadLevel(Application.loadedLevel);
+                SceneManager.LoadScene("ForestScene");
             }
         }
 

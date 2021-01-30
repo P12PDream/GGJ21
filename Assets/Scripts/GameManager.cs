@@ -25,16 +25,37 @@ public class GameManager : MonoBehaviour
 
     private ExtractPoint ePoint;
 
-    void Start()
+    private Stats stats;
+    private PlayerController pController;
+
+
+    void Awake()
     {
+        stats = player.GetComponent<Stats>();
+        pController = player.GetComponent<PlayerController>();
         saveFile = GetComponent<SaveFile>();
         saveFile.LoadStats();
         thisSessionProgress = new SaveData();
     }
 
+    void Start()
+    {
+        LoadStatsToPlayer();
+    }
+
+    public void LoadStatsToPlayer()
+    {
+        stats.maxHealth = saveFile.loadedSave.maxHealth;
+        stats.health = saveFile.loadedSave.maxHealth;
+        pController.speed = saveFile.loadedSave.movementSpeed;
+    }
+
     // Update is called once per frame
     void Update()
     {
+
+
+
         thisSessionProgress.statPoints += 1;
         if (isExtracting)
         {

@@ -13,9 +13,9 @@ public class Stats : MonoBehaviour
 
     public float scoreOnDeath;
 
+
     private void Start()
     {
-
     }
 
     public void TakeDmg(float dmg)

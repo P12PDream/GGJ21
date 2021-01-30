@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HideoutManager : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class HideoutManager : MonoBehaviour
     public Button comboRewardButton;
     public Button coldResistanceButton;
 
+    public Button leaveCaveButton;
+
     public int comboRewardChance; //in %
     
 
@@ -47,6 +50,8 @@ public class HideoutManager : MonoBehaviour
         attackPowerButton.onClick.AddListener(UpgradeAttackPower);
         comboRewardButton.onClick.AddListener(UpgradeCombo);
         coldResistanceButton.onClick.AddListener(UpgradeColdResistance);
+        leaveCaveButton.onClick.AddListener(LeaveCave);
+
         UpdateStats();
 
     }
@@ -76,6 +81,7 @@ public class HideoutManager : MonoBehaviour
         {
             upgradePanel.SetActive(true);
         }
+        statsFile.SaveStats();
     }
 
     // Update is called once per frame
@@ -84,6 +90,11 @@ public class HideoutManager : MonoBehaviour
         
     }
 
+
+    public void LeaveCave()
+    {
+        SceneManager.LoadScene("ForestScene");
+    }
 
     public void UpgradeColdResistance()
     {

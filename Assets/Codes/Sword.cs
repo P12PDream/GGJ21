@@ -12,6 +12,8 @@ public class Sword : Weapon
     public float maxSwingDuration;
     public bool canDealDamage;
 
+    public SaveFile saveFile;
+    public GameManager gameManager;
     private void Update()
     {
         if(swingTimer > 0)

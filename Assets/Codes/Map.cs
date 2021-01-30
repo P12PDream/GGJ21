@@ -25,7 +25,9 @@ public class Map : MonoBehaviour
     public void Start()
     {
         //GenerateMap(rowCount, columnCount);
-        GenerateMap(size);
+        //GenerateMap(size);
+
+
     }
 
     public void GenerateMap(float width)

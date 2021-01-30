@@ -313,3 +313,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveFileName: mybigfoot.bigfoot
+  testVar: 0
+  loadedSave:
+    maxHealth: 100
+    movementSpeed: 5
+    eatSpeed: 5
+    attackDamage: 10
+    attackSpeed: 5
+    coldResistance: 5
+    mapsFinished: 0
+    statPoints: 0
+    enemiesKilled: 0
+    totalDeaths: 0

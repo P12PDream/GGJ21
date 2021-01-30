@@ -4,9 +4,10 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System;
+using System.Reflection;
 
 [Serializable]
-class SaveData {
+public class SaveData {
     public float maxHealth = 100;
     public float movementSpeed = 5;
     public float eatSpeed = 5;
@@ -18,6 +19,8 @@ class SaveData {
     public int statPoints = 0;
     public int enemiesKilled = 0;
     public int totalDeaths = 0;
+
+    public int currentMaxCombo = 1;
 }
 
 public class SaveFile : MonoBehaviour
@@ -27,9 +30,9 @@ public class SaveFile : MonoBehaviour
     public int testVar;
 
     [SerializeField]
-    SaveData loadedSave;
+    public SaveData loadedSave;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         LoadStats();
     }
@@ -41,6 +44,7 @@ public class SaveFile : MonoBehaviour
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(saveFileName, FileMode.Open);
             SaveData data = (SaveData)bf.Deserialize(file);
+
             loadedSave.mapsFinished = data.mapsFinished;
             loadedSave.enemiesKilled = data.enemiesKilled;
             loadedSave.statPoints = data.statPoints;
@@ -51,6 +55,7 @@ public class SaveFile : MonoBehaviour
             loadedSave.attackDamage = data.attackDamage;
             loadedSave.attackSpeed = data.attackSpeed;
             loadedSave.coldResistance = data.coldResistance;
+            loadedSave.currentMaxCombo = data.currentMaxCombo;
             file.Close();
         } else
         {
@@ -90,6 +95,7 @@ public class SaveFile : MonoBehaviour
         data.attackDamage = loadedSave.attackDamage;
         data.attackSpeed = loadedSave.attackSpeed;
         data.coldResistance = loadedSave.coldResistance;
+        data.currentMaxCombo = loadedSave.currentMaxCombo;
 
         bf.Serialize(file, data);
         file.Close();

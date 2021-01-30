@@ -14,6 +14,9 @@ public class Sword : Weapon
 
     public SaveFile saveFile;
     public GameManager gameManager;
+
+    //public bool isEnemy;
+
     private void Update()
     {
         if(swingTimer > 0)
@@ -22,6 +25,7 @@ public class Sword : Weapon
         {
             swingTimer = 0;
             canMelee = true;
+            hitList.Clear();
         }
 
         if (swingDuration > 0)
@@ -44,13 +48,25 @@ public class Sword : Weapon
         swingDuration = maxSwingDuration;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private List<Stats> hitList = new List<Stats>();
+
+    public void ClearHitList()
     {
-        if(other.transform.root != owner && other.gameObject.layer != gameObject.layer)
+        canDealDamage = false;
+        hitList.Clear();
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.transform.root != owner && other.gameObject.layer != 0)// && other.gameObject.layer != gameObject.layer)
         {
-            if (other.GetComponent<Stats>() && canDealDamage)
+            //Debug.Log(other);
+            Stats s = other.transform.root.GetComponent<Stats>();
+
+            if (s != null && canDealDamage && !hitList.Contains(s))
             {
-                other.GetComponent<Stats>().TakeDmg(damage);
+                s.TakeDmg(damage);
+                hitList.Add(s);
             }
         }
     }

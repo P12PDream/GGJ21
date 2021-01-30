@@ -58,15 +58,19 @@ public class Stats : MonoBehaviour
         {
             if(hasDeadAnim)
                 GetComponentInChildren<Animator>().SetTrigger("Death");
-            else
-            {
-                //TODO: spawn dead explosion
-            }
-        }   
+        }
+        
+
+        //TODO: Spawn atte blood here
 
         if (GetComponent<Enemy>())
         {
             GetComponent<Enemy>().AllowMovement = false;
+            GetComponent<Enemy>().healthBar.gameObject.SetActive(false);
+            GetComponent<Enemy>().isEnabled = false;
+            GetComponent<Enemy>().isEatable = true;
+
+
             FindObjectOfType<PlayerController>().score += scoreOnDeath;
 
             if(!GetComponent<Enemy>().isRanged)
@@ -86,6 +90,8 @@ public class Stats : MonoBehaviour
         else
             yield return new WaitForSeconds(0.1f);
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
+
+        //make it eatable
     }
 }

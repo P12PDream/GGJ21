@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 272791950933623369}
   - component: {fileID: 272791950933623382}
   - component: {fileID: 8825788973952350882}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyScout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &272791950933623382
 MonoBehaviour:
@@ -138,7 +138,7 @@ MonoBehaviour:
   chase: 0
   detectLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
   healthBar: {fileID: 5809719804084919444}
   isMelee: 0
   isRanged: 0
@@ -147,6 +147,7 @@ MonoBehaviour:
   escapeDistance: 10
   homeCamp: {fileID: 0}
   curWeapon: {fileID: 0}
+  isEatable: 0
 --- !u!114 &8825788973952350882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,8 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2bb9e2676ae929418079d0f6008a867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
-  maxHealth: 3
+  health: 2
+  maxHealth: 2
   isDead: 0
   hasDeadAnim: 0
   scoreOnDeath: 400

@@ -48,6 +48,9 @@ public class PlayerController : MonoBehaviour
 
     private Stats m_stats;
 
+    public Sword mainHand;
+    public Sword offHand;
+
     private void Awake()
     {
         m_transform = transform;
@@ -92,6 +95,33 @@ public class PlayerController : MonoBehaviour
                 dashTimerForUI = 0;
                 m_anim.SetTrigger("Charge");
             }     
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (m_anim != null && mainHand.canMelee)
+            {
+                int r = Random.Range(0, 3);
+                switch(r)
+                {
+                    case 0:
+                        m_anim.SetTrigger("Attack1");
+                        mainHand.Swing();
+                        break;
+                    case 1:
+                        m_anim.SetTrigger("Attack2");
+                        offHand.Swing();
+                        break;
+                    case 2:
+                        m_anim.SetTrigger("Attack3");
+                        mainHand.Swing();
+                        offHand.Swing();
+                        break;
+                }
+             
+                
+                //SoundManager.PlayASource("Swing");
+            }
         }
 
         if (dashTimerForUI < dashCooldown)
@@ -153,7 +183,7 @@ public class PlayerController : MonoBehaviour
 
     protected void Rotate(Vector3 rotateVector)
     {
-        if (AllowMovement)
+        if (AllowMovement && rotateVector != Vector3.zero)
         {
             m_transform.rotation = Quaternion.LookRotation(new Vector3(rotateVector.x,0,rotateVector.z));
         }

@@ -36,6 +36,8 @@ public class Enemy : MonoBehaviour
 
     public Weapon curWeapon;
 
+    public bool isEatable;
+
     public bool HasGun
     {
         get
@@ -64,6 +66,9 @@ public class Enemy : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (!isEnabled)
+            return;
+
         //not sure if needed
         if (isMelee)
         {
@@ -89,7 +94,7 @@ public class Enemy : MonoBehaviour
             }
 
 
-            if(Vector3.Distance(transform.position, pc.transform.position) <= 2)
+            if(Vector3.Distance(transform.position, pc.transform.position) <= 3)
             {
                 if (curWeapon != null)
                 {
@@ -103,15 +108,7 @@ public class Enemy : MonoBehaviour
 
                             if (m_anim != null)
                             {
-                                int rnd = Random.Range(0, 2);
-                                if (rnd == 0)
-                                {
-                                    m_anim.SetTrigger("Melee1");
-                                }
-                                else if (rnd == 1)
-                                {
-                                    m_anim.SetTrigger("Melee2");
-                                }
+                                m_anim.SetTrigger("Attack");
                             }
                         }
                         else

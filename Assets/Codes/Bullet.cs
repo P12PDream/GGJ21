@@ -37,13 +37,15 @@ public class Bullet : MonoBehaviour
         if(other.transform != owner)
         {
             //its not a bullet
-            if(other.gameObject.layer != 8)
-            {
-                if (other.GetComponent<Stats>())
-                    other.GetComponent<Stats>().TakeDmg(dmg);
+            /*if(other.gameObject.layer != 8)
+            {*/
 
-                Destroy(gameObject);
-            }
+            if (other.GetComponent<Stats>())
+                other.GetComponent<Stats>().TakeDmg(dmg);
+
+            Destroy(gameObject);
+
+            //}
         }      
     }
 }

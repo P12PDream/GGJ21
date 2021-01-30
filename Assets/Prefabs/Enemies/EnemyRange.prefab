@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 2455546780808329040}
   - component: {fileID: 6602695226596134820}
   - component: {fileID: 6602695225162115887}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &2455546780808329040
 MonoBehaviour:
@@ -420,7 +420,7 @@ MonoBehaviour:
   chase: 0
   detectLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
   healthBar: {fileID: 8177052022459836818}
   isMelee: 0
   isRanged: 1
@@ -429,6 +429,7 @@ MonoBehaviour:
   escapeDistance: 7
   homeCamp: {fileID: 0}
   curWeapon: {fileID: 6602695225162115887}
+  isEatable: 0
 --- !u!114 &6602695226596134820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,7 +716,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &6096135421520752890
 MonoBehaviour:
   m_ObjectHideFlags: 0

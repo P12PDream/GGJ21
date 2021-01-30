@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 272791950933623369}
   - component: {fileID: 272791950933623382}
   - component: {fileID: 8825788973952350882}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: EnemyScout
   m_TagString: Untagged
   m_Icon: {fileID: 0}

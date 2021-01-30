@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
         //not sure if needed
         if (isMelee)
         {
-            if (chase && Vector3.Distance(transform.position, lastSeenSpot) >= 2 && !stop)
+            if (chase && Vector3.Distance(transform.position, lastSeenSpot) >= 3 && !stop)
             {
                 Move((lastSeenSpot - transform.position).normalized);
 
@@ -77,7 +77,7 @@ public class Enemy : MonoBehaviour
                 if (pc != null)
                     transform.LookAt(pc.transform.position);
             }
-            else if (chase && Vector3.Distance(transform.position, lastSeenSpot) <= 2)
+            else if (chase && Vector3.Distance(transform.position, lastSeenSpot) <= 3)
             {
                 chase = false;
             }

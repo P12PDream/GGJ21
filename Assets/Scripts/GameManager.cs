@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class GameManager : MonoBehaviour
     private Stats stats;
     private PlayerController pController;
 
+    public Text extractionTest;
+    public GameObject extractionPanel;
 
     void Awake()
     {
@@ -53,13 +56,18 @@ public class GameManager : MonoBehaviour
     {
         if (isExtracting)
         {
+            extractionPanel.SetActive(true);
+            extractionTest.text = "Extraction in " + (5f - timer).ToString("F2");
             timer += 1 * Time.deltaTime;
             print("extracting .. " + timer.ToString());
             if(timer >= extractionTime && isExtracting)
             {
-                isExtracting = false;
+                extractionPanel.SetActive(false);
                 StartCoroutine(ExtractSuccess());
             }
+        } else
+        {
+            extractionPanel.SetActive(false);
         }
     }
 

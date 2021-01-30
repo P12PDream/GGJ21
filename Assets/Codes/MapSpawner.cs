@@ -15,6 +15,7 @@ public class MapSpawner : MonoBehaviour
 
     public Enemy meleeEnemyPrefab;
     public Enemy rangedEnemyPrefab;
+    public Enemy scoutEnemyPrefab;
     public int squadSize;
     public float enemyDensity;
 
@@ -102,18 +103,23 @@ public class MapSpawner : MonoBehaviour
         GameObject campBuildings = Instantiate(campPrefabs[buildingAmount], campfire.transform.position, Quaternion.identity);
         campBuildings.transform.Rotate(0, Random.Range(0, 180), 0);
 
-        SpawnSquad(true, buildingAmount + 2, aMarker.transform.position);
+        SpawnSquad(true, buildingAmount + 2, campfire);
+
+        SpawnEnemy(scoutEnemyPrefab, campfire.transform.position + new Vector3(Random.Range(-100, 100), 0, Random.Range(-100, 100)), campfire);
 
         //spawn enemies that live in the camp
         //set this camp as their home camp
     }
 
-    public void SpawnEnemy(Enemy eToSpawn)
+    public void SpawnEnemy(Enemy eToSpawn, Vector3 pos, GameObject homeCamp)
     {
-
+        GameObject e = Instantiate(eToSpawn.gameObject, new Vector3(pos.x + Random.Range(-10, 10),
+                   pos.y, pos.z + Random.Range(-10, 10)), Quaternion.identity);
+        Enemy ee = e.GetComponent<Enemy>();
+        ee.homeCamp = homeCamp;
     }
 
-    public void SpawnSquad(bool stationary, int amount, Vector3 pos)
+    public void SpawnSquad(bool stationary, int amount, GameObject camp)
     {
         int gunnerAmount = amount / 2;
 
@@ -121,14 +127,19 @@ public class MapSpawner : MonoBehaviour
         {
             if (i < gunnerAmount)
             {
-                GameObject re = Instantiate(rangedEnemyPrefab.gameObject, new Vector3(pos.x + Random.Range(-10, 10), pos.y, pos.z + Random.Range(-10, 10)), Quaternion.identity);
-                Enemy rangedEnemy = re.GetComponent<Enemy>();
+                GameObject re = Instantiate(rangedEnemyPrefab.gameObject, new Vector3(camp.transform.position.x + Random.Range(-10, 10), 
+                    camp.transform.position.y, camp.transform.position.z + Random.Range(-10, 10)), Quaternion.identity);
+                Enemy e = re.GetComponent<Enemy>();
+                e.homeCamp = camp;
                 //set stationary, but turn on intervals?
             }
             else if(i < amount)
             {
-                GameObject me = Instantiate(meleeEnemyPrefab.gameObject, new Vector3(pos.x + Random.Range(-10, 10), pos.y, pos.z + Random.Range(-10, 10)), Quaternion.identity);
-                Enemy meleeÉnemy = me.GetComponent<Enemy>();
+                int r = Random.Range(0, 2);
+                GameObject me = Instantiate(((r == 0) ? meleeEnemyPrefab.gameObject : scoutEnemyPrefab.gameObject), new Vector3(camp.transform.position.x + Random.Range(-10, 10), 
+                    camp.transform.position.y, camp.transform.position.z + Random.Range(-10, 10)), Quaternion.identity);
+                Enemy e = me.GetComponent<Enemy>();
+                e.homeCamp = camp;
                 //set stuff
             }
                 

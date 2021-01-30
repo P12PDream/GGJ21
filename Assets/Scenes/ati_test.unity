@@ -1923,6 +1923,7 @@ MonoBehaviour:
   campDensity: 0.3
   meleeEnemyPrefab: {fileID: 8769254606013830241, guid: ab0994900d3c32448bef271a5cd1eab5, type: 3}
   rangedEnemyPrefab: {fileID: 2455546780808329040, guid: ab61abac981c4d3498d243cd2b408cba, type: 3}
+  scoutEnemyPrefab: {fileID: 272791950933623382, guid: 692f294bfc9b9f04baf303a29ddd3f35, type: 3}
   squadSize: 5
   enemyDensity: 0.4
 --- !u!4 &1630436254

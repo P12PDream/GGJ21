@@ -618,7 +618,8 @@ MonoBehaviour:
   isEnabled: 1
   AllowMovement: 1
   pc: {fileID: 0}
-  detectDistance: 30
+  detectDistance: 20
+  shootDistance: 0
   speed: 3.5
   chase: 0
   detectLayer:

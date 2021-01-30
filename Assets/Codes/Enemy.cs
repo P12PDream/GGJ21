@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     private bool stop;
     public PlayerController pc;
     public float detectDistance;
+    public float shootDistance;
     public float speed;
     public bool chase;
     public LayerMask detectLayer;
@@ -25,7 +26,11 @@ public class Enemy : MonoBehaviour
 
     public bool isMelee;
     public bool isRanged;
+    public bool isScout;
+    public bool hasArrivedBase;
     public float escapeDistance;
+
+    public GameObject homeCamp;
 
     private Animator m_anim;
 
@@ -54,12 +59,12 @@ public class Enemy : MonoBehaviour
         {
             DoLogic();
             UpdateHealthBar();
-            Shoot();
         }    
     }
 
     public void FixedUpdate()
     {
+        //not sure if needed
         if (isMelee)
         {
             if (chase && Vector3.Distance(transform.position, lastSeenSpot) >= 2 && !stop)
@@ -117,19 +122,39 @@ public class Enemy : MonoBehaviour
 
 
         }
+        //fix ranged
         else if (isRanged)
         {
-            if(pc != null)
-                transform.LookAt(pc.transform.position);
-
-            if (chase && Vector3.Distance(transform.position, lastSeenSpot) <= escapeDistance)
+            //run to shoot distance
+            if (chase && Vector3.Distance(transform.position, lastSeenSpot) >= shootDistance)
             {
-                Move((transform.position - lastSeenSpot).normalized);
+                if (pc != null)
+                    transform.LookAt(pc.transform.position);
+
+                if (GetComponent<Gun>().canShoot)
+                    Move((lastSeenSpot - transform.position).normalized);
+            }
+            //run away from player
+            else if (chase && Vector3.Distance(transform.position, lastSeenSpot) <= escapeDistance)
+            {
+                if (pc != null)
+                    transform.LookAt(pc.transform.position);
+
+                if (GetComponent<Gun>().canShoot)
+                    Move((transform.position - lastSeenSpot).normalized);
+
                 if (m_anim != null)
                     m_anim.SetFloat("Speed", Mathf.Abs((lastSeenSpot - transform.position).normalized.magnitude));
+
+                //maybe shoot while running?
+                //Shoot();
             }
             else if (chase && Vector3.Distance(transform.position, lastSeenSpot) >= escapeDistance)
             {
+                if (pc != null)
+                    transform.LookAt(pc.transform.position);
+
+                Shoot();
                 chase = false;
             }
             else
@@ -137,6 +162,33 @@ public class Enemy : MonoBehaviour
                 //do idle or move untill wall or something
                 if (m_anim != null)
                     m_anim.SetFloat("Speed", 0);
+            }
+        }
+        //add scout who runs
+        else if(isScout)
+        {
+            if (chase)
+            {
+                if (pc != null)
+                    transform.LookAt(pc.transform.position);
+
+                if(homeCamp != null && Vector3.Distance(transform.position, homeCamp.transform.position) <= 5)
+                {
+                    hasArrivedBase = true;
+                    chase = false;
+                }
+
+                // run to home base
+                if(homeCamp != null && !hasArrivedBase)
+                    Move((homeCamp.transform.position - transform.position).normalized);
+                else if (Vector3.Distance(transform.position, lastSeenSpot) <= escapeDistance)
+                {
+                    Move((transform.position - lastSeenSpot).normalized);
+                }
+
+                if (m_anim != null)
+                    m_anim.SetFloat("Speed", Mathf.Abs((lastSeenSpot - transform.position).normalized.magnitude));
+
             }
         }
 

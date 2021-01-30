@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ForestScene.unity
     guid: 9c981844d962ff34bb425fb6ba2be3de
+  - enabled: 1
+    path: Assets/Scenes/Hideout.unity
+    guid: 25c6b42960f40b64399ca7bc9f776111
   m_configObjects: {}

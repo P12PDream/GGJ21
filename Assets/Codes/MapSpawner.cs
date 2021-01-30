@@ -9,11 +9,17 @@ public class MapSpawner : MonoBehaviour
 
     public GameObject treePrefab;
 
+    public List<GameObject> campPrefabs = new List<GameObject>();
+    public GameObject fire;
+    public float campDensity = 0.3f;
+
+
 
     private void Start()
     {
         areaMarkers = GameObject.FindGameObjectsWithTag("FSM");
         GenerateForests();
+        GenerateCamps();
     }
 
     public void GenerateForests()
@@ -59,4 +65,42 @@ public class MapSpawner : MonoBehaviour
                                                     tree.transform.localScale.z * Random.Range(0.7f, 1));
         }
     }
+
+
+    public void GenerateCamps()
+    {
+        float campAmount = areaMarkers.Length * campDensity;
+        campAmount = (int)campAmount;
+
+        List<bool> hasCamp = new List<bool>();
+        for (int i = 0; i < areaMarkers.Length; i++)
+        {
+            if (i <= campAmount)
+                hasCamp.Add(true);
+            else
+                hasCamp.Add(false);
+        }
+
+        ListHelper.Shuffle(hasCamp);
+
+        for (int i = 0; i < areaMarkers.Length; i++)
+        {
+            //spawn forest on this area marker
+            if (hasCamp[i])
+                SpawnCamp(areaMarkers[i]);
+        }
+    }
+
+    public void SpawnCamp(GameObject aMarker)
+    {
+        int buildingAmount = Random.Range(0, campPrefabs.Count);
+
+        GameObject campfire = Instantiate(fire, aMarker.transform.position, Quaternion.identity);
+        GameObject campBuildings = Instantiate(campPrefabs[buildingAmount], campfire.transform.position, Quaternion.identity);
+        campBuildings.transform.Rotate(0, Random.Range(0, 180), 0);
+
+        //spawn enemies that live in the camp
+        //set this camp as their home camp
+    }
+
 }

@@ -12,6 +12,10 @@ public class HideoutManager : MonoBehaviour
     public Text currHealthText;
     public Text attackPowerText;
     public Text movementSpeedText;
+    public Text deathCountText;
+    public Text mapClearCountText;
+    public Text enemiesKilledCountText;
+    public Text coldResistanceText;
 
     
 
@@ -20,6 +24,7 @@ public class HideoutManager : MonoBehaviour
     public Button movementButton;
     public Button attackPowerButton;
     public Button comboRewardButton;
+    public Button coldResistanceButton;
 
     public int comboRewardChance; //in %
     
@@ -28,26 +33,36 @@ public class HideoutManager : MonoBehaviour
     {
         statsFile = GetComponent<SaveFile>();
 
+        coldResistanceText.text = statsFile.loadedSave.coldResistance.ToString();
         statPointAvailableText.text = statsFile.loadedSave.statPoints.ToString();
         currHealthText.text = statsFile.loadedSave.maxHealth.ToString();
         attackPowerText.text = statsFile.loadedSave.attackDamage.ToString();
         movementSpeedText.text = statsFile.loadedSave.movementSpeed.ToString();
+        deathCountText.text = statsFile.loadedSave.totalDeaths.ToString();
+        mapClearCountText.text = statsFile.loadedSave.mapsFinished.ToString();
+        enemiesKilledCountText.text = statsFile.loadedSave.enemiesKilled.ToString();
 
         healthButton.onClick.AddListener(UpgradeHealth);
         movementButton.onClick.AddListener(UpgradeMovementSpeed);
         attackPowerButton.onClick.AddListener(UpgradeAttackPower);
         comboRewardButton.onClick.AddListener(UpgradeCombo);
+        coldResistanceButton.onClick.AddListener(UpgradeColdResistance);
         UpdateStats();
 
     }
 
     void UpdateStats()
     {
+        coldResistanceText.text = statsFile.loadedSave.coldResistance.ToString();
         statPointAvailableText.text = statsFile.loadedSave.statPoints.ToString();
         currHealthText.text = statsFile.loadedSave.maxHealth.ToString();
         attackPowerText.text = statsFile.loadedSave.attackDamage.ToString();
         movementSpeedText.text = statsFile.loadedSave.movementSpeed.ToString();
-        if(Random.Range(0, 100) < comboRewardChance && statsFile.loadedSave.currentMaxCombo < 3)
+        deathCountText.text = statsFile.loadedSave.totalDeaths.ToString();
+        mapClearCountText.text = statsFile.loadedSave.mapsFinished.ToString();
+        enemiesKilledCountText.text = statsFile.loadedSave.enemiesKilled.ToString();
+
+        if (Random.Range(0, 100) < comboRewardChance && statsFile.loadedSave.currentMaxCombo < 3)
         {
             comboRewardButton.gameObject.SetActive(true);
         } else
@@ -67,6 +82,14 @@ public class HideoutManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+
+    public void UpgradeColdResistance()
+    {
+        statsFile.loadedSave.coldResistance += 1;
+        statsFile.loadedSave.statPoints -= 1;
+        UpdateStats();
     }
 
     public void UpgradeCombo()

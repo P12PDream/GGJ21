@@ -79,7 +79,8 @@ public class Enemy : MonoBehaviour
             else
             {
                 //do idle or move untill wall or something
-                m_anim.SetFloat("Speed", 0);
+                if (m_anim != null)
+                    m_anim.SetFloat("Speed", 0);
             }
 
 

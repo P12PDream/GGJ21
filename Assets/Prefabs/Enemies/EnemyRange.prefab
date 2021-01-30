@@ -567,7 +567,7 @@ MonoBehaviour:
   isEnabled: 1
   AllowMovement: 1
   pc: {fileID: 0}
-  detectDistance: 40
+  detectDistance: 35
   speed: 2
   chase: 0
   detectLayer:
@@ -576,7 +576,7 @@ MonoBehaviour:
   healthBar: {fileID: 8177052022459836818}
   isMelee: 0
   isRanged: 1
-  escapeDistance: 15
+  escapeDistance: 10
   curWeapon: {fileID: 6602695225162115887}
 --- !u!114 &6602695226596134820
 MonoBehaviour:

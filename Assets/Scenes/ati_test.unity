@@ -1921,6 +1921,10 @@ MonoBehaviour:
   - {fileID: 728310159307530059, guid: 055a2922417bebb4ab56a7499ed7e434, type: 3}
   fire: {fileID: 4151448450086743672, guid: 4eff86fba83617748b7842ab24db280a, type: 3}
   campDensity: 0.3
+  meleeEnemyPrefab: {fileID: 8769254606013830241, guid: ab0994900d3c32448bef271a5cd1eab5, type: 3}
+  rangedEnemyPrefab: {fileID: 2455546780808329040, guid: ab61abac981c4d3498d243cd2b408cba, type: 3}
+  squadSize: 5
+  enemyDensity: 0.4
 --- !u!4 &1630436254
 Transform:
   m_ObjectHideFlags: 0

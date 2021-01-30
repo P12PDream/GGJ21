@@ -13,7 +13,10 @@ public class MapSpawner : MonoBehaviour
     public GameObject fire;
     public float campDensity = 0.3f;
 
-
+    public Enemy meleeEnemyPrefab;
+    public Enemy rangedEnemyPrefab;
+    public int squadSize;
+    public float enemyDensity;
 
     private void Start()
     {
@@ -99,8 +102,37 @@ public class MapSpawner : MonoBehaviour
         GameObject campBuildings = Instantiate(campPrefabs[buildingAmount], campfire.transform.position, Quaternion.identity);
         campBuildings.transform.Rotate(0, Random.Range(0, 180), 0);
 
+        SpawnSquad(true, buildingAmount + 2, aMarker.transform.position);
+
         //spawn enemies that live in the camp
         //set this camp as their home camp
+    }
+
+    public void SpawnEnemy(Enemy eToSpawn)
+    {
+
+    }
+
+    public void SpawnSquad(bool stationary, int amount, Vector3 pos)
+    {
+        int gunnerAmount = amount / 2;
+
+        for(int i = 0; i < amount; i++)
+        {
+            if (i < gunnerAmount)
+            {
+                GameObject re = Instantiate(rangedEnemyPrefab.gameObject, new Vector3(pos.x + Random.Range(-10, 10), pos.y, pos.z + Random.Range(-10, 10)), Quaternion.identity);
+                Enemy rangedEnemy = re.GetComponent<Enemy>();
+                //set stationary, but turn on intervals?
+            }
+            else if(i < amount)
+            {
+                GameObject me = Instantiate(meleeEnemyPrefab.gameObject, new Vector3(pos.x + Random.Range(-10, 10), pos.y, pos.z + Random.Range(-10, 10)), Quaternion.identity);
+                Enemy meleeÉnemy = me.GetComponent<Enemy>();
+                //set stuff
+            }
+                
+        }
     }
 
 }

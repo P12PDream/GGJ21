@@ -19,11 +19,9 @@ public class GameManager : MonoBehaviour
 
     private SaveFile saveFile;
 
-    private SaveData thisSessionProgress;
+    public SaveData thisSessionProgress;
 
     public bool isExtracting = false;
-
-    private ExtractPoint ePoint;
 
     private Stats stats;
     private PlayerController pController;
@@ -53,15 +51,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-
-        thisSessionProgress.statPoints += 1;
         if (isExtracting)
         {
             timer += 1 * Time.deltaTime;
             print("extracting .. " + timer.ToString());
-            if(timer >= extractionTime)
+            if(timer >= extractionTime && isExtracting)
             {
                 isExtracting = false;
                 StartCoroutine(ExtractSuccess());
@@ -71,11 +65,10 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ExtractSuccess()
     {
-        saveFile.AddProgress(thisSessionProgress);
-        saveFile.SaveStats();
         yield return new WaitForSeconds(0.5f);
         //fade screen black and go to hideout
-
+        saveFile.AddProgress(thisSessionProgress);
+        saveFile.SaveStats();
         SceneManager.LoadScene("Hideout");
     }
 }

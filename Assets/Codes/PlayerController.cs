@@ -51,6 +51,11 @@ public class PlayerController : MonoBehaviour
     public Sword mainHand;
     public Sword offHand;
 
+    private int currComboIdx = 0;
+
+    public float comboTimer = 0;
+    public bool comboStarted = false;
+
     private void Awake()
     {
         m_transform = transform;
@@ -96,20 +101,42 @@ public class PlayerController : MonoBehaviour
                 m_anim.SetTrigger("Charge");
             }     
         }
+        if(comboStarted)
+        {
+            comboTimer += 1 * Time.deltaTime;
+            if (comboTimer > 1.5)
+            {
+                comboTimer = 0;
+                currComboIdx = 0;
+                comboStarted = false;
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            comboStarted = true;
             if (m_anim != null && mainHand.canMelee)
             {
-                int r = Random.Range(0, 3);
-                switch(r)
+                SaveFile sf = FindObjectOfType<SaveFile>();
+
+                if (currComboIdx >= sf.loadedSave.currentMaxCombo)
+                {
+                    currComboIdx = 0;
+                }
+                else
+                {
+                    currComboIdx++;
+                }
+                switch(currComboIdx)
                 {
                     case 0:
                         m_anim.SetTrigger("Attack1");
+                        m_anim.speed = mainHand.swingTimerMax;
                         mainHand.Swing();
                         break;
                     case 1:
                         m_anim.SetTrigger("Attack2");
+                        m_anim.speed = mainHand.swingTimerMax;
                         offHand.Swing();
                         break;
                     case 2:
@@ -143,6 +170,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }*/
+
 
         if (m_anim != null)
             m_anim.SetFloat("Speed", Mathf.Abs(m_move.magnitude) );

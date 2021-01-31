@@ -14,7 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MikkoHideOut.unity
     guid: c8d5db8730caff845ad110728b3cbf08
-  - enabled: 1
-    path: Assets/Scenes/Hideout.unity
-    guid: 25c6b42960f40b64399ca7bc9f776111
   m_configObjects: {}

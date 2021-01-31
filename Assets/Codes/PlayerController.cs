@@ -107,9 +107,11 @@ public class PlayerController : MonoBehaviour
             comboTimer += 1 * Time.deltaTime;
             if (comboTimer > 1.5)
             {
+                GameManager gm = FindObjectOfType<GameManager>();
                 comboTimer = 0;
                 currComboIdx = 0;
                 comboStarted = false;
+                gm.boboFace.sprite = gm.boboNormal;
             }
         }
 
@@ -125,6 +127,8 @@ public class PlayerController : MonoBehaviour
             if (m_anim != null && mainHand.canMelee)
             {
                 SaveFile sf = FindObjectOfType<SaveFile>();
+                GameManager gm = FindObjectOfType<GameManager>();
+                gm.boboFace.sprite = gm.boboAngry;
 
                 if (currComboIdx >= sf.loadedSave.currentMaxCombo)
                 {

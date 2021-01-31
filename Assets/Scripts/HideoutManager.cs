@@ -41,9 +41,6 @@ public class HideoutManager : MonoBehaviour
         currHealthText.text = statsFile.loadedSave.maxHealth.ToString();
         attackPowerText.text = statsFile.loadedSave.attackDamage.ToString();
         movementSpeedText.text = statsFile.loadedSave.movementSpeed.ToString();
-        deathCountText.text = statsFile.loadedSave.totalDeaths.ToString();
-        mapClearCountText.text = statsFile.loadedSave.mapsFinished.ToString();
-        enemiesKilledCountText.text = statsFile.loadedSave.enemiesKilled.ToString();
 
         healthButton.onClick.AddListener(UpgradeHealth);
         movementButton.onClick.AddListener(UpgradeMovementSpeed);
@@ -63,9 +60,6 @@ public class HideoutManager : MonoBehaviour
         currHealthText.text = statsFile.loadedSave.maxHealth.ToString();
         attackPowerText.text = statsFile.loadedSave.attackDamage.ToString();
         movementSpeedText.text = statsFile.loadedSave.movementSpeed.ToString();
-        deathCountText.text = statsFile.loadedSave.totalDeaths.ToString();
-        mapClearCountText.text = statsFile.loadedSave.mapsFinished.ToString();
-        enemiesKilledCountText.text = statsFile.loadedSave.enemiesKilled.ToString();
 
         if (Random.Range(0, 100) < comboRewardChance && statsFile.loadedSave.currentMaxCombo < 3)
         {

@@ -1788,9 +1788,9 @@ MonoBehaviour:
   - {fileID: 34246006383011545, guid: f35d59ec6ef61d14aa30caece727fa91, type: 3}
   - {fileID: 5909539487990924612, guid: 22dc02d3d44ac5546b73c0cfa0f7114c, type: 3}
   propPrefabs:
-  - {fileID: 919132149155446097, guid: f799e8c1f924ebd489258e67a8e20d71, type: 3}
-  - {fileID: 919132149155446097, guid: 383a471b37a3010489848f36dbdec30b, type: 3}
-  - {fileID: 919132149155446097, guid: b8c1ccb436050264a9b0c85bef5b66fb, type: 3}
+  - {fileID: 2711229948417103584, guid: 898c189660c4bd14d98bc5c769627ec9, type: 3}
+  - {fileID: 1544584870913361313, guid: 8454bc0a11fe9b64aa025ab2ce80b317, type: 3}
+  - {fileID: 8115241826503427600, guid: 4c2bb622045c5484fab02db435eb672e, type: 3}
   campPrefabs:
   - {fileID: 1374635033831454023, guid: d1c46e9452b033e4db544f772c0ac6ae, type: 3}
   - {fileID: 4607766290739132067, guid: fbd388e6cd8714149a61eeeb43c9583b, type: 3}
@@ -1801,6 +1801,7 @@ MonoBehaviour:
   meleeEnemyPrefab: {fileID: 8769254606013830241, guid: ab0994900d3c32448bef271a5cd1eab5, type: 3}
   rangedEnemyPrefab: {fileID: 2455546780808329040, guid: ab61abac981c4d3498d243cd2b408cba, type: 3}
   scoutEnemyPrefab: {fileID: 272791950933623382, guid: 692f294bfc9b9f04baf303a29ddd3f35, type: 3}
+  pickupPrefab: {fileID: 8589227527972920143, guid: 414fff43469faa449b2198fccf7412a4, type: 3}
   squadSize: 5
   enemyDensity: 0.4
 --- !u!4 &1630436254

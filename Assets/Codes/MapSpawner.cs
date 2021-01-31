@@ -17,6 +17,8 @@ public class MapSpawner : MonoBehaviour
     public Enemy meleeEnemyPrefab;
     public Enemy rangedEnemyPrefab;
     public Enemy scoutEnemyPrefab;
+    public GameObject pickupPrefab;
+
     public int squadSize;
     public float enemyDensity;
 
@@ -25,6 +27,18 @@ public class MapSpawner : MonoBehaviour
         areaMarkers = GameObject.FindGameObjectsWithTag("FSM");
         GenerateForests();
         GenerateCamps();
+        GenerateProps();
+    }
+
+    public void GenerateProps()
+    {
+        //float forestAmount = areaMarkers.Length * forestDensity;
+        //forestAmount = (int)forestAmount;
+        
+        for (int i = 0; i < areaMarkers.Length; i++)
+        {
+            SpawnPropsAtAreaMarker(areaMarkers[i], Random.Range(30, 40));
+        }
     }
 
     public void GenerateForests()
@@ -71,7 +85,28 @@ public class MapSpawner : MonoBehaviour
                                                     tree.transform.localScale.y * Random.Range(0.5f, 1.5f),
                                                     tree.transform.localScale.z * Random.Range(0.2f, .5f));
 
-            tree.transform.Rotate(0, Random.Range(0, 180), 0);
+            tree.transform.Rotate(0, Random.Range(0, 360), 0);
+        }
+    }
+
+    public void SpawnPropsAtAreaMarker(GameObject aMarker, float size)
+    {
+        Vector3 forestAreaStart = aMarker.transform.position - new Vector3(size, 0, size);
+        Vector3 forestAreaEnd = aMarker.transform.position + new Vector3(size, 0, size);
+
+        float propAmount = Random.Range(5, 25);
+
+        for (int i = 0; i < propAmount; i++)
+        {
+            GameObject prop = Instantiate(propPrefabs[Random.Range(0, propPrefabs.Count)]);
+            prop.transform.position = new Vector3(Random.Range(forestAreaStart.x, forestAreaEnd.x), 0,
+                                                  Random.Range(forestAreaStart.z, forestAreaEnd.z));
+
+            prop.transform.localScale = new Vector3(prop.transform.localScale.x * Random.Range(0.6f, 1.2f),
+                                                    prop.transform.localScale.y * Random.Range(0.6f, 1.2f),
+                                                    prop.transform.localScale.z * Random.Range(0.6f, 1.2f));
+
+            prop.transform.Rotate(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
         }
     }
 
@@ -106,11 +141,19 @@ public class MapSpawner : MonoBehaviour
 
         GameObject campfire = Instantiate(fire, aMarker.transform.position, Quaternion.identity);
         GameObject campBuildings = Instantiate(campPrefabs[buildingAmount], campfire.transform.position, Quaternion.identity);
-        campBuildings.transform.Rotate(0, Random.Range(0, 180), 0);
+        campBuildings.transform.Rotate(0, Random.Range(0, 360), 0);
 
         SpawnSquad(true, buildingAmount + 2, campfire);
 
         SpawnEnemy(scoutEnemyPrefab, campfire.transform.position + new Vector3(Random.Range(-100, 100), 0, Random.Range(-100, 100)), campfire);
+
+        int dropAmount = Random.Range(1, 3);
+
+        for(int i = 0; i < dropAmount; i++)
+        {
+            GameObject e = Instantiate(pickupPrefab.gameObject, new Vector3(campfire.transform.position.x + Random.Range(-10, 10), 2, campfire.transform.position.z + Random.Range(-10, 10)), Quaternion.identity);
+            //do stuff with the pickup?
+        }
 
         //spawn enemies that live in the camp
         //set this camp as their home camp

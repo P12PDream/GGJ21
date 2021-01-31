@@ -59,6 +59,8 @@ public class PlayerController : MonoBehaviour
 
     public AudioSource walkSound;
 
+    private bool isDead = false;
+
     private void Awake()
     {
         m_transform = transform;
@@ -81,6 +83,19 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (isDead)
+        {
+
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("MikkoHideOut");
+            }
+
+
+            return;
+        }
+           
+
         if (m_transform.position.y < -20)
             GetComponent<Stats>().TakeDmg(10000);
         
@@ -106,7 +121,7 @@ public class PlayerController : MonoBehaviour
         if (!AllowMovement)
             return;
 
-        if(Input.GetKeyDown(KeyCode.E))
+        /*if(Input.GetKeyDown(KeyCode.E))
         {
             if(m_allowDash && canDash)
             {
@@ -114,7 +129,8 @@ public class PlayerController : MonoBehaviour
                 dashTimerForUI = 0;
                 m_anim.SetTrigger("Charge");
             }     
-        }
+        }*/
+
         if(comboStarted)
         {
             comboTimer += 1 * Time.deltaTime;
@@ -299,12 +315,20 @@ public class PlayerController : MonoBehaviour
     {
         m_anim.SetTrigger("Death");
         AllowMovement = false;
+        isDead = true;
 
         if (GetComponent<Gun>())
             GetComponent<Gun>().enabled = false;
 
         if (GetComponentInChildren<Sword>())
             GetComponentInChildren<Sword>().enabled = false;
+
+
+        //reset save data
+        //go to mikko scene
+
+        FindObjectOfType<SaveFile>().loadedSave = new SaveData();
+        FindObjectOfType<SaveFile>().NewSave();
     }
 
     public void OnTriggerStay(Collider other)

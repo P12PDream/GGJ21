@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float timeLimit = 600;
+    public float timeLimit = 10;
+    public float coldDmgPerTick = 5;
     private float currTime;
     public float coldTemperature;
     public GameObject[] extractPoints;
@@ -59,7 +60,7 @@ public class GameManager : MonoBehaviour
         currTime += 1 * Time.deltaTime;
         if(currTime > timeLimit)
         {
-            //?? lose
+            stats.health -= (coldDmgPerTick - saveFile.loadedSave.coldResistance);
         }
 
         if (isExtracting)

@@ -54,7 +54,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        boboFace.sprite = boboNormal;
+        if(boboFace != null)
+            boboFace.sprite = boboNormal;
         LoadStatsToPlayer();
     }
 
@@ -67,8 +68,10 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        healthText.text = Mathf.RoundToInt(stats.health).ToString();
+    { 
+        if(healthText != null)
+            healthText.text = Mathf.RoundToInt(stats.health).ToString();
+
         currTime += 1 * Time.deltaTime;
         if(currTime > timeLimit)
         {
@@ -76,20 +79,23 @@ public class GameManager : MonoBehaviour
             currTime = 0;
         }
 
-        if(stats.health < 50 && stats.health > 31)
+        if(boboFace != null)
         {
-            boboFace.sprite = boboHurt;
-        }
+            if (stats.health < 50 && stats.health > 31)
+            {
+                boboFace.sprite = boboHurt;
+            }
 
-        if(stats.health < 30)
-        {
-            boboFace.sprite = boboHurtBadly;
+            if (stats.health < 30)
+            {
+                boboFace.sprite = boboHurtBadly;
+            }
+            if (stats.health > 50)
+            {
+                boboFace.sprite = boboNormal;
+            }
         }
-        if(stats.health > 50)
-        {
-            boboFace.sprite = boboNormal;
-        }
-
+       
         if (isExtracting)
         {
             extractionPanel.SetActive(true);

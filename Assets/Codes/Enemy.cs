@@ -295,6 +295,17 @@ public class Enemy : MonoBehaviour
 
     private void UpdateHealthBar()
     {
+        if(Vector3.Distance(transform.position, pc.transform.position) >= 12)
+        {
+            if (healthBar.gameObject.activeSelf)
+                healthBar.gameObject.SetActive(false);
+        }
+        else
+        {
+            if(!healthBar.gameObject.activeSelf)
+                healthBar.gameObject.SetActive(true);
+        }
+
         healthBar.value = m_stats.health / m_stats.maxHealth;
         healthBar.transform.LookAt(healthBar.transform.position + m_cam.transform.rotation * Vector3.back,
                                        m_cam.transform.rotation * Vector3.down);

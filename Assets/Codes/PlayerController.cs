@@ -111,7 +111,8 @@ public class PlayerController : MonoBehaviour
                 comboTimer = 0;
                 currComboIdx = 0;
                 comboStarted = false;
-                gm.boboFace.sprite = gm.boboNormal;
+                if(gm.boboFace != null)
+                    gm.boboFace.sprite = gm.boboNormal;
             }
         }
 
@@ -128,7 +129,8 @@ public class PlayerController : MonoBehaviour
             {
                 SaveFile sf = FindObjectOfType<SaveFile>();
                 GameManager gm = FindObjectOfType<GameManager>();
-                gm.boboFace.sprite = gm.boboAngry;
+                if(gm.boboFace != null)
+                    gm.boboFace.sprite = gm.boboAngry;
 
                 if (currComboIdx >= sf.loadedSave.currentMaxCombo)
                 {

@@ -27,7 +27,7 @@ public class Stats : MonoBehaviour
 
         if(GetComponent<PlayerController>())
         {
-            SoundManager.PlayASource("TakeDamage");
+            //player takes damage sound
             PlayerController pc = GetComponent<PlayerController>();
         }
 
@@ -39,6 +39,14 @@ public class Stats : MonoBehaviour
         {
             GetComponent<Enemy>().FlashHealthBar();
             GetComponent<Enemy>().chase = true;
+
+            int r = Random.Range(0, 2);
+            if(!isDead && !GetComponent<Enemy>().isMelee)
+                SoundManager.PlayASource((r == 0) ? "EnemyHurt" : "EnemyHurt2");
+            else if(GetComponent<Enemy>().isMelee)
+            {
+                SoundManager.PlayASource("Dog2");
+            }
 
             FindObjectOfType<Blood>().SpawnBlood(transform.position);
         } 
@@ -130,10 +138,13 @@ public class Stats : MonoBehaviour
 
             FindObjectOfType<PlayerController>().score += scoreOnDeath;
 
-            if(!GetComponent<Enemy>().isRanged)
-                SoundManager.PlayASource("EnemyDeath");
+           
+            if (GetComponent<Enemy>().isMelee)
+            {
+                SoundManager.PlayASource("Dog1");
+            }
             else
-                SoundManager.PlayASource("EnemyDeath2");
+                SoundManager.PlayASource("EnemyDie");
         }  
 
         if (GetComponent<Gun>())

@@ -112,6 +112,7 @@ public class Enemy : MonoBehaviour
                             if (m_anim != null)
                             {
                                 m_anim.SetTrigger("Attack");
+                                SoundManager.PlayASource("Dog3");
                             }
                         }
                         else
@@ -255,6 +256,8 @@ public class Enemy : MonoBehaviour
                     GetComponentInChildren<Animator>().SetTrigger("Shoot");
 
                 StartCoroutine(WaitAfterShot());
+
+                SoundManager.PlayASource("Fire");
             }      
         }
     }
@@ -282,7 +285,49 @@ public class Enemy : MonoBehaviour
         {
             chase = true;
             lastSeenSpot = pc.transform.position;
+
+            //play detect sound
+            //add delay so it doesnt get spammed
+            if(canYell)
+            {
+                canYell = false;
+                StartCoroutine(WaitForAnnouncement());
+
+                if(isRanged)
+                {
+                    SoundManager.PlayASource("EnemyShootShoot");
+                }
+                else if(isScout)
+                {
+                    int line = Random.Range(0, 3);
+
+                    switch (line)
+                    {
+                        case 0:
+                            SoundManager.PlayASource("SomethingOnTheHill");
+                            break;
+                        case 1:
+                            SoundManager.PlayASource("SomethingOnTheHill2");
+                            break;
+                        case 2:
+                            SoundManager.PlayASource("SomethingOnTheHill3");
+                            break;
+                    }
+                }
+                else if(isMelee)
+                {
+                    SoundManager.PlayASource("Dog2");
+                }
+            }
         }
+    }
+
+    private bool canYell = true;
+
+    private IEnumerator WaitForAnnouncement()
+    {
+        yield return new WaitForSeconds(Random.Range(4,7));
+        canYell = true;
     }
 
     protected void Move(Vector3 moveVector)

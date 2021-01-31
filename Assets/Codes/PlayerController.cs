@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour
     public bool comboStarted = false;
     private bool attemptEat;
 
+    public AudioSource walkSound;
+
     private void Awake()
     {
         m_transform = transform;
@@ -80,7 +82,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (m_transform.position.y < -20)
-            GetComponent<Stats>().TakeDmg(100);
+            GetComponent<Stats>().TakeDmg(10000);
         
         if(m_stats != null && m_stats.isDead)
         {
@@ -88,6 +90,17 @@ public class PlayerController : MonoBehaviour
             {
                 SceneManager.LoadScene("ForestScene");
             }
+        }
+
+        if (m_anim != null)
+        {
+            float speed = Mathf.Abs(m_move.magnitude);
+            m_anim.SetFloat("Speed", speed);
+
+            if (speed > 0 && !walkSound.isPlaying)
+                walkSound.Play();
+            else if(speed <= 0)
+                walkSound.Pause();
         }
 
         if (!AllowMovement)
@@ -120,7 +133,6 @@ public class PlayerController : MonoBehaviour
         {
             AttemptEat();
         }
-
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -169,24 +181,6 @@ public class PlayerController : MonoBehaviour
 
         if(playerDash != null)
             UpdateDashImage();
-
-        /*if (CurWeapon.GetType() == typeof(Sword))
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse0) && CurWeapon != null)
-            {
-                Sword sword = (Sword)CurWeapon;
-                if (m_anim != null && sword.canMelee)
-                {
-                    sword.Swing();
-                    m_anim.SetTrigger("Swing1");
-                    SoundManager.PlayASource("Swing");
-                }
-            }
-        }*/
-
-
-        if (m_anim != null)
-            m_anim.SetFloat("Speed", Mathf.Abs(m_move.magnitude) );
     }
 
     public void AttemptEat()

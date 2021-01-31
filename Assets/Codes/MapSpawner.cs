@@ -18,6 +18,9 @@ public class MapSpawner : MonoBehaviour
     public Enemy rangedEnemyPrefab;
     public Enemy scoutEnemyPrefab;
     public GameObject pickupPrefab;
+    public GameObject extractPointPrefab;
+
+    public List<GameObject> playerSpawns = new List<GameObject>();
 
     public int squadSize;
     public float enemyDensity;
@@ -28,6 +31,7 @@ public class MapSpawner : MonoBehaviour
         GenerateForests();
         GenerateCamps();
         GenerateProps();
+        FindObjectOfType<PlayerController>().transform.position = playerSpawns[Random.Range(0, playerSpawns.Count)].transform.position;
     }
 
     public void GenerateProps()

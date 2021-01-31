@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float timeLimit;
+    public float timeLimit = 600;
+    private float currTime;
     public float coldTemperature;
     public GameObject[] extractPoints;
 
@@ -54,10 +55,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        currTime += 1 * Time.deltaTime;
+        if(currTime > timeLimit)
+        {
+            //?? lose
+        }
+
         if (isExtracting)
         {
             extractionPanel.SetActive(true);
-            extractionTest.text = "Extraction in " + (5f - timer).ToString("F2");
+            extractionTest.text = "Extraction in " + (5f - timer).ToString("F1");
             timer += 1 * Time.deltaTime;
             print("extracting .. " + timer.ToString());
             if(timer >= extractionTime && isExtracting)

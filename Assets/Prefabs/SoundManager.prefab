@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3520625901136484197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3520625901136484198}
+  - component: {fileID: 3520625901136484199}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3520625901136484198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3520625901136484197}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.5148735, y: 7.784637, z: 10.171944}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3520625901136484199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3520625901136484197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8abc88529ca300e4c9c87570dd6931e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - aSource: {fileID: 5536675671470723523, guid: fff774c356b706d46a2efb9ea5697b35, type: 3}
+    aName: Dog1
+  - aSource: {fileID: 6856318371572621518, guid: 1133d5bea7a85b84c918228dae1fad93, type: 3}
+    aName: Dog2
+  - aSource: {fileID: 6879783085773023483, guid: faf5c3345d661224586a0df3d6e578e4, type: 3}
+    aName: Dog3
+  - aSource: {fileID: 182995215210664414, guid: 837751501283ed74594ace8bc029904e, type: 3}
+    aName: EnemyDie
+  - aSource: {fileID: 240074784921850962, guid: f6bd562a984e96b43ac94fd5482a5f4c, type: 3}
+    aName: EnemyHurt
+  - aSource: {fileID: 8615795258889090393, guid: 7f424f1cffba6e646b519076ff19ee2e, type: 3}
+    aName: EnemyHurt2
+  - aSource: {fileID: 502176136980567748, guid: a038ac3f5a5e9e94d9b2c3d86ede2a18, type: 3}
+    aName: EnemyShootShoot
+  - aSource: {fileID: 6522535047354106132, guid: 8830c0d221d636d40a5a900185e0a44b, type: 3}
+    aName: EnemyTalking3
+  - aSource: {fileID: 5583516873050511661, guid: 4b03569274668a64e8be89592a0100d2, type: 3}
+    aName: EnemyTalking
+  - aSource: {fileID: 2944823298325686609, guid: 727f0da595141f9438781051b1443b51, type: 3}
+    aName: EnemyTalking2
+  - aSource: {fileID: 7428160472610374446, guid: 7c4ad4d8da773c84f9c20585cf3dfce1, type: 3}
+    aName: Fire
+  - aSource: {fileID: 8723332767546381390, guid: 99d94f35e5a821042bc71a6ed58ba829, type: 3}
+    aName: SnowRun
+  - aSource: {fileID: 4705462800168954090, guid: 9f8f6a89a62ebd34d9914ce1224e959f, type: 3}
+    aName: SomethingOnTheHill
+  - aSource: {fileID: 1479622818250085333, guid: e5a9b9cb6dc2e2343a1dafcc8a51bf62, type: 3}
+    aName: SomethingOnTheHill2
+  - aSource: {fileID: 7386802052074243742, guid: 5a6dad2b10905a54a923d8fc16e6b0f6, type: 3}
+    aName: SomethingOnTheHill3
+  - aSource: {fileID: 8582318257961083979, guid: 50478251502fd694da5b260e4d0946d7, type: 3}
+    aName: YetiDead
+  - aSource: {fileID: 346775996521045080, guid: 1bf8398b91b503044bc481d297d9830e, type: 3}
+    aName: YetiShout
+  - aSource: {fileID: 6129107977894880664, guid: f8f3db9d0841d20408ac73adba1958f5, type: 3}
+    aName: YetiShout2
+  - aSource: {fileID: 4119740068559524897, guid: 6505126ab100ea54f97bdc8c3edb7e62, type: 3}
+    aName: YetiSounds

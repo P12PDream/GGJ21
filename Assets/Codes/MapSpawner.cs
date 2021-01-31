@@ -7,7 +7,8 @@ public class MapSpawner : MonoBehaviour
     public GameObject[] areaMarkers;
     public float forestDensity = 0.5f;
 
-    public GameObject treePrefab;
+    public List<GameObject> treePrefabs = new List<GameObject>();
+    public List<GameObject> propPrefabs = new List<GameObject>();
 
     public List<GameObject> campPrefabs = new List<GameObject>();
     public GameObject fire;
@@ -52,6 +53,8 @@ public class MapSpawner : MonoBehaviour
 
     public void SpawnForestAtAreaMarker(GameObject aMarker, float size)
     {
+        int forestType = Random.Range(0, treePrefabs.Count);
+
         //forest size
         Vector3 forestAreaStart = aMarker.transform.position - new Vector3(size, 0, size);
         Vector3 forestAreaEnd = aMarker.transform.position + new Vector3(size, 0, size);
@@ -60,7 +63,7 @@ public class MapSpawner : MonoBehaviour
 
         for(int i = 0; i < treeAmount; i++)
         {
-            GameObject tree = Instantiate(treePrefab);
+            GameObject tree = Instantiate(treePrefabs[Random.Range(0, treePrefabs.Count)]);
             tree.transform.position = new Vector3(Random.Range(forestAreaStart.x, forestAreaEnd.x), 0,
                                                   Random.Range(forestAreaStart.z, forestAreaEnd.z));
 

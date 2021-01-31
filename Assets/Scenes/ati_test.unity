@@ -1783,7 +1783,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areaMarkers: []
   forestDensity: 0.5
-  treePrefab: {fileID: 2748914370275399620, guid: d161567e55735284089c968aa4ceede2, type: 3}
+  treePrefabs:
+  - {fileID: 2748914370275399620, guid: d161567e55735284089c968aa4ceede2, type: 3}
+  - {fileID: 34246006383011545, guid: f35d59ec6ef61d14aa30caece727fa91, type: 3}
+  - {fileID: 5909539487990924612, guid: 22dc02d3d44ac5546b73c0cfa0f7114c, type: 3}
+  propPrefabs:
+  - {fileID: 919132149155446097, guid: f799e8c1f924ebd489258e67a8e20d71, type: 3}
+  - {fileID: 919132149155446097, guid: 383a471b37a3010489848f36dbdec30b, type: 3}
+  - {fileID: 919132149155446097, guid: b8c1ccb436050264a9b0c85bef5b66fb, type: 3}
   campPrefabs:
   - {fileID: 1374635033831454023, guid: d1c46e9452b033e4db544f772c0ac6ae, type: 3}
   - {fileID: 4607766290739132067, guid: fbd388e6cd8714149a61eeeb43c9583b, type: 3}

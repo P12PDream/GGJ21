@@ -33,7 +33,7 @@ public class Blood : MonoBehaviour
         float s = Random.Range(0.1f, 0.3f);
         bloodPositions[nextBloodId] = new Vector4(pos.x, pos.z, r, s);
         nextBloodId++;
-        if (nextBloodId > bloodPositions.Length)
+        if (nextBloodId >= bloodPositions.Length)
             nextBloodId = 0;
     }
 }

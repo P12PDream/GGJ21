@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float timeLimit = 600;
+    public float timeLimit = 10;
+    public float coldDmgPerTick = 15;
     private float currTime;
     public float coldTemperature;
     public GameObject[] extractPoints;
@@ -20,6 +21,17 @@ public class GameManager : MonoBehaviour
     public GameObject player;
 
     private SaveFile saveFile;
+
+
+    public Image boboFace;
+
+    public Sprite boboSly;
+    public Sprite boboHurt;
+    public Sprite boboAngry;
+    public Sprite boboHurtBadly;
+    public Sprite boboNormal;
+
+    public Text healthText;
 
     public SaveData thisSessionProgress;
 
@@ -42,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        boboFace.sprite = boboNormal;
         LoadStatsToPlayer();
     }
 
@@ -55,11 +68,26 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        healthText.text = Mathf.RoundToInt(stats.health).ToString();
         currTime += 1 * Time.deltaTime;
         if(currTime > timeLimit)
         {
-            //?? lose
+            stats.health -= (coldDmgPerTick - saveFile.loadedSave.coldResistance); //needs to be tweaked to a more cooler variation thing
+            currTime = 0;
+        }
+
+        if(stats.health < 50 && stats.health > 31)
+        {
+            boboFace.sprite = boboHurt;
+        }
+
+        if(stats.health < 30)
+        {
+            boboFace.sprite = boboHurtBadly;
+        }
+        if(stats.health > 50)
+        {
+            boboFace.sprite = boboNormal;
         }
 
         if (isExtracting)

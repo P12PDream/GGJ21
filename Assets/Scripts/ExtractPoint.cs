@@ -22,7 +22,8 @@ public class ExtractPoint : MonoBehaviour
 
     public void OnTriggerStay(Collider other)
     {
-        if(other.gameObject == player)
+        print("enter");
+        if (other.transform.root.GetComponent<PlayerController>())
         {
             print("enter");
             gameManager.isExtracting = true;
@@ -31,7 +32,7 @@ public class ExtractPoint : MonoBehaviour
     public void OnTriggerExit(Collider other)
     {
         print("leave");
-        if (other.gameObject == player)
+        if (other.transform.root.GetComponent<PlayerController>())
         {
             gameManager.isExtracting = false;
             gameManager.timer = 0;

@@ -774,6 +774,7 @@ GameObject:
   - component: {fileID: 1851601765}
   - component: {fileID: 1851601764}
   - component: {fileID: 1851601767}
+  - component: {fileID: 1851601768}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -861,3 +862,49 @@ MonoBehaviour:
   renderTexture: {fileID: 8400000, guid: 24b58e5a2be7a35c4a935ec1dbdc6c53, type: 2}
   m_defaultSnowClear: {fileID: 2100000, guid: b2c0ee297adcebf4f844e857aaf9889e, type: 2}
   m_startSnowHeight: 1
+--- !u!114 &1851601768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851601763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ad1092bd90d4af1837097d1020ea19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snowMaterial: {fileID: 2100000, guid: 613d7214c32657598b1e27c787dd8f6e, type: 2}
+  bloodPositions:
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: -0.663, y: 3.76, z: 1, w: 0.5}
+  - {x: 0, y: 0.31, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}

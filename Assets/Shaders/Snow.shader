@@ -7,6 +7,7 @@
         _NormalTex ("Normal", 2D) = "bump" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
+        _BloodTex ("Blood splats", 2D) = "white" {}
         _StaticSnowMask ("Static Snow Mask (R)", 2D) = "white" {}
         _DynamicSnowMask ("Dynamic Snow Mask", 2D) = "bump" {}
         _SnowNormalMul ("Snow Normal Multiplier", Range(0, 1)) = 0.5
@@ -33,6 +34,8 @@
         struct Input
         {
             float2 uv_MainTex;
+            float2 uv_BloodTex;
+            float3 worldPos;
         };
 
         sampler2D _StaticSnowMask;
@@ -73,11 +76,28 @@
             // put more per-instance properties here
         UNITY_INSTANCING_BUFFER_END(Props)
 
+
+        // This needs to be same in script! 
+        #define MAX_BLOOD 32
+        half4 u_BloodSplats[MAX_BLOOD];
+        sampler2D _BloodTex;
+
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             // Albedo comes from a texture tinted by color
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
             o.Albedo = c.rgb;
+
+
+            [unroll(MAX_BLOOD)]
+            for (int i = 0; i < MAX_BLOOD; ++i) {
+                float distance = length(IN.worldPos.xz - u_BloodSplats[i].xy);
+                if (distance < u_BloodSplats[i].z) {
+                    fixed4 blood = tex2D (_BloodTex, 0.5 - (u_BloodSplats[i].xy - IN.worldPos.xz) * u_BloodSplats[i].w);
+                    o.Albedo = lerp(o.Albedo, blood.rgb, blood.a * abs(1.0 - distance / u_BloodSplats[i].z));
+                }
+            }
+
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;

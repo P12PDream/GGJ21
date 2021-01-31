@@ -39,6 +39,8 @@ public class Stats : MonoBehaviour
         {
             GetComponent<Enemy>().FlashHealthBar();
             GetComponent<Enemy>().chase = true;
+
+            FindObjectOfType<Blood>().SpawnBlood(transform.position);
         } 
         else if (GetComponent<PlayerController>())
             GetComponent<PlayerController>().UpdateHealthImage();
@@ -95,9 +97,10 @@ public class Stats : MonoBehaviour
             if(hasDeadAnim)
                 GetComponentInChildren<Animator>().SetTrigger("Death");
         }
-        
+
 
         //TODO: Spawn atte blood here
+        FindObjectOfType<Blood>().SpawnBlood(transform.position);
 
         if (GetComponent<Enemy>())
         {

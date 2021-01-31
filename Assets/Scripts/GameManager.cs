@@ -120,6 +120,6 @@ public class GameManager : MonoBehaviour
         //fade screen black and go to hideout
         saveFile.AddProgress(thisSessionProgress);
         saveFile.SaveStats();
-        SceneManager.LoadScene("Hideout");
+        SceneManager.LoadScene("MikkoHideOut");
     }
 }

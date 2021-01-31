@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float timeLimit = 5;
-    public float coldDmgPerTick = 5;
+    public float timeLimit = 10;
+    public float coldDmgPerTick = 15;
     private float currTime;
     public float coldTemperature;
     public GameObject[] extractPoints;
@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
         if(currTime > timeLimit)
         {
             stats.health -= (coldDmgPerTick - saveFile.loadedSave.coldResistance); //needs to be tweaked to a more cooler variation thing
+            currTime = 0;
         }
 
         if(stats.health < 50 && stats.health > 31)

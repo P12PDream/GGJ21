@@ -1794,6 +1794,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 8e57763752954c642a94bdf3b4b7bcd0, type: 3}
     - target: {fileID: 6680143087597757685, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+      propertyPath: timeLimit
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680143087597757685, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
       propertyPath: boboNormal
       value: 
       objectReference: {fileID: 21300000, guid: 015146b62fa6d1c4c9a2e5adb9c4c9e0, type: 3}
@@ -1805,6 +1809,10 @@ PrefabInstance:
       propertyPath: boboHurtBadly
       value: 
       objectReference: {fileID: 21300000, guid: 742c3dfe37d0e6043895819ad90975a4, type: 3}
+    - target: {fileID: 6680143087597757685, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+      propertyPath: coldDmgPerTick
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6680143087597757685, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
       propertyPath: extractionTest
       value: 
@@ -2518,7 +2526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9647059, g: 0.84835005, b: 0.7411765, a: 0.23921569}
+  m_Color: {r: 0.9647059, g: 0.84835005, b: 0.7411765, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

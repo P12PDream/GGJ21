@@ -188,6 +188,7 @@ public class PlayerController : MonoBehaviour
         if (attemptEat)
             return;
 
+        SoundManager.PlayASource("YetiShout");
         AllowMovement = false;
         m_anim.SetTrigger("Eat");
         attemptEat = true;

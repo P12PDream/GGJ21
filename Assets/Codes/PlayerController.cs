@@ -264,6 +264,9 @@ public class PlayerController : MonoBehaviour
         else
         {
             m_transform.Translate(dir * dashDistance, Space.World);
+
+            //TODO:
+            //move towards dashpoint with lerp
         }
         dashParticle.Play();
         yield return new WaitForSeconds(dashCooldown);

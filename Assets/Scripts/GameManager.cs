@@ -117,9 +117,8 @@ public class GameManager : MonoBehaviour
     IEnumerator ExtractSuccess()
     {
         yield return new WaitForSeconds(0.5f);
-        //fade screen black and go to hideout
         saveFile.AddProgress(thisSessionProgress);
-        saveFile.SaveStats();
+        //fade screen black and go to hideout
         SceneManager.LoadScene("MikkoHideOut");
     }
 }

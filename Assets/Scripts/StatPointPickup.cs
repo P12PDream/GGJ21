@@ -17,16 +17,14 @@ public class StatPointPickup : MonoBehaviour
     public Light light;
 
     private bool isPickedUp = false;
-    private int force1StatPoint;
     // Start is called before the first frame update
     void Start()
     {
         light = GetComponent<Light>();
         gamemgnragfdsmfdnfs = GameManager.GetComponent<GameManager>();
-        force1StatPoint = gamemgnragfdsmfdnfs.thisSessionProgress.statPoints + 1;
     }
 
-    // Update is called once per frame
+    // Update is called once per frame1
     void Update()
     {
         sinVal = Mathf.Sin(20 / sinTime) * sinMultiplier;
@@ -35,7 +33,7 @@ public class StatPointPickup : MonoBehaviour
 
     public void collect()
     {
-        gamemgnragfdsmfdnfs.thisSessionProgress.statPoints += 1;
+        FindObjectOfType<GameManager>().thisSessionProgress.statPoints += 1;
         isPickedUp = true;
         Destroy(gameObject);
     }
@@ -44,7 +42,6 @@ public class StatPointPickup : MonoBehaviour
     {
         if (other.transform.root.GetComponent<PlayerController>() && !isPickedUp)
         {
-            print("asfdsjdgf");
             collect();
         }
     }

@@ -317,7 +317,7 @@ public class PlayerController : MonoBehaviour
             // do something
             // heal?
             // score?
-            m_stats.Heal(m_stats.maxHealth, 5);
+            m_stats.Heal(m_stats.maxHealth / 2, 5);
             //add exp?
 
             Destroy(e.gameObject);

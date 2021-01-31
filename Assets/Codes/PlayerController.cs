@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
 
     public float comboTimer = 0;
     public bool comboStarted = false;
+    private bool attemptEat;
 
     private void Awake()
     {
@@ -111,6 +112,12 @@ public class PlayerController : MonoBehaviour
                 comboStarted = false;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            AttemptEat();
+        }
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -174,6 +181,24 @@ public class PlayerController : MonoBehaviour
 
         if (m_anim != null)
             m_anim.SetFloat("Speed", Mathf.Abs(m_move.magnitude) );
+    }
+
+    public void AttemptEat()
+    {
+        if (attemptEat)
+            return;
+
+        AllowMovement = false;
+        m_anim.SetTrigger("Eat");
+        attemptEat = true;
+        StartCoroutine(WaitEat());
+    }
+
+    private IEnumerator WaitEat()
+    {
+        yield return new WaitForSeconds(2);
+        attemptEat = false;
+        AllowMovement = true;
     }
 
     void DoMovement()
@@ -276,6 +301,25 @@ public class PlayerController : MonoBehaviour
 
         if (GetComponentInChildren<Sword>())
             GetComponentInChildren<Sword>().enabled = false;
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        if (!attemptEat)
+            return;
+
+        Enemy e = other.transform.root.GetComponent<Enemy>();
+        if (e != null && e.isEatable)
+        {
+            // do something
+            // heal?
+            // score?
+            m_stats.Heal(m_stats.maxHealth, 5);
+            //add exp?
+
+            Destroy(e.gameObject);
+
+        }
     }
 
 }

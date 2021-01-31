@@ -40,8 +40,8 @@ public class Bullet : MonoBehaviour
             /*if(other.gameObject.layer != 8)
             {*/
 
-            if (other.GetComponent<Stats>())
-                other.GetComponent<Stats>().TakeDmg(dmg);
+            if (other.transform.root.GetComponent<Stats>())
+                other.transform.root.GetComponent<Stats>().TakeDmg(dmg);
 
             Destroy(gameObject);
 

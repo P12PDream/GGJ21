@@ -181,7 +181,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 183
+    m_Bits: 439
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -742,6 +742,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5738574257092662327, guid: 7e7fceedfa4dd474c8a923b6566cb645, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7d921babbcbd44644b8485ff88b9b82d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e7fceedfa4dd474c8a923b6566cb645, type: 3}
 --- !u!4 &864880932 stripped
@@ -942,10 +946,6 @@ PrefabInstance:
     - target: {fileID: 8984004113760615288, guid: 4702c7626b406e24e84e795ad184e26d, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8984004113760615288, guid: 4702c7626b406e24e84e795ad184e26d, type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4702c7626b406e24e84e795ad184e26d, type: 3}
@@ -1149,6 +1149,7 @@ GameObject:
   - component: {fileID: 1359250584}
   - component: {fileID: 1359250583}
   - component: {fileID: 1359250582}
+  - component: {fileID: 1359250586}
   m_Layer: 0
   m_Name: SnowCamera
   m_TagString: Untagged
@@ -1236,6 +1237,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: -179.99998}
+--- !u!114 &1359250586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359250581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ad1092bd90d4af1837097d1020ea19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snowMaterial: {fileID: 2100000, guid: 7d921babbcbd44644b8485ff88b9b82d, type: 2}
+  bloodPositions:
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  nextBloodId: 0
 --- !u!1 &1436403835
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,7 +1783,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areaMarkers: []
   forestDensity: 0.5
-  treePrefab: {fileID: 2748914370275399620, guid: d161567e55735284089c968aa4ceede2, type: 3}
+  treePrefabs:
+  - {fileID: 2748914370275399620, guid: d161567e55735284089c968aa4ceede2, type: 3}
+  - {fileID: 34246006383011545, guid: f35d59ec6ef61d14aa30caece727fa91, type: 3}
+  - {fileID: 5909539487990924612, guid: 22dc02d3d44ac5546b73c0cfa0f7114c, type: 3}
+  propPrefabs:
+  - {fileID: 919132149155446097, guid: f799e8c1f924ebd489258e67a8e20d71, type: 3}
+  - {fileID: 919132149155446097, guid: 383a471b37a3010489848f36dbdec30b, type: 3}
+  - {fileID: 919132149155446097, guid: b8c1ccb436050264a9b0c85bef5b66fb, type: 3}
   campPrefabs:
   - {fileID: 1374635033831454023, guid: d1c46e9452b033e4db544f772c0ac6ae, type: 3}
   - {fileID: 4607766290739132067, guid: fbd388e6cd8714149a61eeeb43c9583b, type: 3}

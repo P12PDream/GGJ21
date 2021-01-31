@@ -196,7 +196,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator WaitEat()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         attemptEat = false;
         AllowMovement = true;
     }

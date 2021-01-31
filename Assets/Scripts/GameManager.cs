@@ -75,7 +75,8 @@ public class GameManager : MonoBehaviour
             }
         } else
         {
-            extractionPanel.SetActive(false);
+            if(extractionPanel != null)
+                extractionPanel.SetActive(false);
         }
     }
 

@@ -165,8 +165,9 @@ MonoBehaviour:
   health: 2
   maxHealth: 2
   isDead: 0
-  hasDeadAnim: 0
+  hasDeadAnim: 1
   scoreOnDeath: 400
+  isHealing: 0
 --- !u!1 &3373028580054620820
 GameObject:
   m_ObjectHideFlags: 0

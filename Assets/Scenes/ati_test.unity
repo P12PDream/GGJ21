@@ -485,6 +485,97 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab61abac981c4d3498d243cd2b408cba, type: 3}
+--- !u!1001 &526742488
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3831829832016938713, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3831829832016938713, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.0088797
+      objectReference: {fileID: 0}
+    - target: {fileID: 3831829832016938713, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.2256266
+      objectReference: {fileID: 0}
+    - target: {fileID: 3831829832016938713, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 24.896156
+      objectReference: {fileID: 0}
+    - target: {fileID: 3831829832016938713, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3831829832016938713, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3831829832016938713, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3831829832016938713, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3831829832016938713, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3831829832016938713, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3831829832016938713, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680143087597757685, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1194028947}
+    - target: {fileID: 7994863478413322090, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+--- !u!1 &526742489 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7994863478413322090, guid: 46fac1a4ab4fcfb43a3ff5f414fbf7a4, type: 3}
+  m_PrefabInstance: {fileID: 526742488}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &526742490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526742489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d62f840981ca8549aace1ec6754c88e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveFileName: bigfoot.bigfoot
+  loadedSave:
+    maxHealth: 100
+    movementSpeed: 5
+    eatSpeed: 5
+    attackDamage: 10
+    attackSpeed: 5
+    coldResistance: 5
+    mapsFinished: 0
+    statPoints: 0
+    enemiesKilled: 0
+    totalDeaths: 0
+    currentMaxCombo: 1
 --- !u!1 &705056197
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,6 +1040,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4702c7626b406e24e84e795ad184e26d, type: 3}
+--- !u!1 &1194028947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8984004113760615288, guid: 4702c7626b406e24e84e795ad184e26d, type: 3}
+  m_PrefabInstance: {fileID: 1117437175}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1224299682
 GameObject:
   m_ObjectHideFlags: 0

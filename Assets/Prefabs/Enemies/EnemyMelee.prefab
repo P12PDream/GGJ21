@@ -867,6 +867,7 @@ MonoBehaviour:
   isDead: 0
   hasDeadAnim: 1
   scoreOnDeath: 400
+  isHealing: 0
 --- !u!1001 &3558072113824786935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -880,15 +881,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2712615417021322073, guid: 3bfa8da34c16b9d4f81683f24a87ac4f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.25
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 2712615417021322073, guid: 3bfa8da34c16b9d4f81683f24a87ac4f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.25
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 2712615417021322073, guid: 3bfa8da34c16b9d4f81683f24a87ac4f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.25
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 2712615417021322073, guid: 3bfa8da34c16b9d4f81683f24a87ac4f, type: 3}
       propertyPath: m_LocalPosition.x

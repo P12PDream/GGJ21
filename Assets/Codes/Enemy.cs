@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour
             }
             else if (chase && Vector3.Distance(transform.position, lastSeenSpot) <= 3)
             {
-                chase = false;
+                //chase = false;
             }
             else
             {
@@ -153,7 +153,7 @@ public class Enemy : MonoBehaviour
                     transform.LookAt(pc.transform.position);
 
                 Shoot();
-                chase = false;
+                //chase = false;
             }
             else
             {
@@ -240,8 +240,16 @@ public class Enemy : MonoBehaviour
 
                 if (GetComponentInChildren<Animator>())
                     GetComponentInChildren<Animator>().SetTrigger("Shoot");
+
+                StartCoroutine(WaitAfterShot());
             }      
         }
+    }
+
+    private IEnumerator WaitAfterShot()
+    {
+        yield return new WaitForSeconds(.5f);
+        GetComponentInChildren<Animator>().SetTrigger("Reload");
     }
 
     public void CheckForPlayer()

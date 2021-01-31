@@ -86,6 +86,8 @@ public class Enemy : MonoBehaviour
             else if (chase && Vector3.Distance(transform.position, lastSeenSpot) <= 3)
             {
                 //chase = false;
+                if (m_anim != null)
+                    m_anim.SetFloat("Speed", 0);
             }
             else
             {
@@ -124,13 +126,18 @@ public class Enemy : MonoBehaviour
         else if (isRanged)
         {
             //run to shoot distance
-            if (chase && Vector3.Distance(transform.position, lastSeenSpot) >= shootDistance)
+            if (chase && Vector3.Distance(transform.position, pc.transform.position) >= detectDistance + 5)
+                chase = false;
+            else if (chase && Vector3.Distance(transform.position, lastSeenSpot) >= shootDistance)
             {
                 if (pc != null)
                     transform.LookAt(pc.transform.position);
 
                 if (GetComponent<Gun>().canShoot)
                     Move((lastSeenSpot - transform.position).normalized);
+
+                if (m_anim != null)
+                    m_anim.SetFloat("Speed", 1);
             }
             //run away from player
             else if (chase && Vector3.Distance(transform.position, lastSeenSpot) <= escapeDistance)
@@ -142,15 +149,18 @@ public class Enemy : MonoBehaviour
                     Move((transform.position - lastSeenSpot).normalized);
 
                 if (m_anim != null)
-                    m_anim.SetFloat("Speed", Mathf.Abs((lastSeenSpot - transform.position).normalized.magnitude));
+                    m_anim.SetFloat("Speed", 1);//Mathf.Abs((lastSeenSpot - transform.position).normalized.magnitude));
 
                 //maybe shoot while running?
                 //Shoot();
             }
-            else if (chase && Vector3.Distance(transform.position, lastSeenSpot) >= escapeDistance)
+            else if (chase && Vector3.Distance(transform.position, pc.transform.position) >= escapeDistance)
             {
                 if (pc != null)
                     transform.LookAt(pc.transform.position);
+
+                if (m_anim != null)
+                    m_anim.SetFloat("Speed", 0);
 
                 Shoot();
                 //chase = false;
@@ -185,7 +195,10 @@ public class Enemy : MonoBehaviour
                 }
 
                 if (m_anim != null)
-                    m_anim.SetFloat("Speed", Mathf.Abs((lastSeenSpot - transform.position).normalized.magnitude));
+                    m_anim.SetFloat("Speed", 1);//Mathf.Abs((lastSeenSpot - transform.position).normalized.magnitude));
+
+                if (Vector3.Distance(transform.position, pc.transform.position) >= 17 && hasArrivedBase)
+                    chase = false;
 
             }
             else
@@ -249,7 +262,8 @@ public class Enemy : MonoBehaviour
     private IEnumerator WaitAfterShot()
     {
         yield return new WaitForSeconds(.5f);
-        GetComponentInChildren<Animator>().SetTrigger("Reload");
+        if(!GetComponent<Stats>().isDead)
+            GetComponentInChildren<Animator>().SetTrigger("Reload");
     }
 
     public void CheckForPlayer()

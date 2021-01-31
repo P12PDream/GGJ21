@@ -96,6 +96,21 @@ public class Stats : MonoBehaviour
         {
             if(hasDeadAnim)
                 GetComponentInChildren<Animator>().SetTrigger("Death");
+            if(GetComponent<Enemy>())
+            {
+                Enemy e = GetComponent<Enemy>();
+                if(e.isRanged)
+                {
+                    //fix death animation...
+                    e.GetComponentInChildren<Animator>().gameObject.transform.position += new Vector3(0, 2, 0);
+                }
+
+                if(e.isScout)
+                {
+                    e.GetComponentInChildren<Animator>().gameObject.transform.Rotate(-75, 0, 0);
+                    e.GetComponentInChildren<Animator>().gameObject.transform.position += new Vector3(0, 1f, 0);
+                }
+            }
         }
 
 

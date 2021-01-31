@@ -146,7 +146,7 @@ MonoBehaviour:
   isRanged: 0
   isScout: 1
   hasArrivedBase: 0
-  escapeDistance: 10
+  escapeDistance: 15
   homeCamp: {fileID: 0}
   curWeapon: {fileID: 0}
   isEatable: 0
@@ -853,7 +853,7 @@ Animator:
   m_GameObject: {fileID: 8801936154719846378}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6c5281ee9f75b4c459152a97707d8139, type: 2}
+  m_Controller: {fileID: 9100000, guid: 95d935b2501c2524eb5ca5eb28b14b7b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

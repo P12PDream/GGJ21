@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039aad67fe9ea444b8f12749b2905177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 15
   owner: {fileID: 8984004113760615285}
   swingTimer: 0
   swingTimerMax: 1.5
@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039aad67fe9ea444b8f12749b2905177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 15
   owner: {fileID: 8984004113760615285}
   swingTimer: 0
   swingTimerMax: 1.5

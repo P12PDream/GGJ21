@@ -444,8 +444,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2bb9e2676ae929418079d0f6008a867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
-  maxHealth: 3
+  health: 50
+  maxHealth: 50
   isDead: 0
   hasDeadAnim: 1
   scoreOnDeath: 600
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031ec4e700073ce4886f30572f4159ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 20
   owner: {fileID: 0}
   m_bulletPrefab: {fileID: 5925294661424371884, guid: d265ced60e27c5640b4c6cb5db8b4277, type: 3}
   bulletVelocity: 25

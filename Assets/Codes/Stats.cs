@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Stats : MonoBehaviour
@@ -35,7 +36,10 @@ public class Stats : MonoBehaviour
             Dead();
 
         if (GetComponent<Enemy>())
+        {
             GetComponent<Enemy>().FlashHealthBar();
+            GetComponent<Enemy>().chase = true;
+        } 
         else if (GetComponent<PlayerController>())
             GetComponent<PlayerController>().UpdateHealthImage();
     }
@@ -51,6 +55,38 @@ public class Stats : MonoBehaviour
             GetComponent<PlayerController>().Dead();
         }
     }
+
+    public bool isHealing = false;
+
+    public void Heal(float amount, float durationSeconds)
+    {
+        if (amount <= 0 || isHealing)
+            return;
+
+        isHealing = true;
+
+        StartCoroutine(HealOvertime(amount, durationSeconds));
+
+    }
+
+    IEnumerator HealOvertime(float amount, float duration)
+    {
+        float healPerSecond = amount / duration;
+        float totalHealed = 0;
+
+        while(totalHealed < amount)
+        {
+            health += healPerSecond;
+            if (health >= maxHealth)
+                health = maxHealth;
+            totalHealed += healPerSecond;
+            yield return new WaitForSeconds(1);
+        }
+
+        isHealing = false;
+    }
+
+
 
     IEnumerator WaitDestroy()
     {

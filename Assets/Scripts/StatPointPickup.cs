@@ -42,8 +42,9 @@ public class StatPointPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject == player && !isPickedUp)
+        if (other.transform.root.GetComponent<PlayerController>() && !isPickedUp)
         {
+            print("asfdsjdgf");
             collect();
         }
     }

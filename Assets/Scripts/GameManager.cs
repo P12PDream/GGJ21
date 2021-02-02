@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         stats.health = saveFile.loadedSave.maxHealth;
         pController.speed = saveFile.loadedSave.movementSpeed;
 
-        Sword[] weapons = player.GetComponentsInChildren<Sword>();
+        Melee[] weapons = player.GetComponentsInChildren<Melee>();
         for(int i = 0; i < weapons.Length; i++)
             weapons[i].damage = saveFile.loadedSave.attackDamage;
 

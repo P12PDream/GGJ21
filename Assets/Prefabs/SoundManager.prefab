@@ -82,3 +82,11 @@ MonoBehaviour:
     aName: YetiShout2
   - aSource: {fileID: 4119740068559524897, guid: 6505126ab100ea54f97bdc8c3edb7e62, type: 3}
     aName: YetiSounds
+  - aSource: {fileID: 5459021948339165504, guid: 175cfce028544fb448c514577c18e4cf, type: 3}
+    aName: YetiSound1
+  - aSource: {fileID: 3799922719385653801, guid: 683dbba9b58b2fe4b8a86ab31cfd0ea6, type: 3}
+    aName: YetiSound2
+  - aSource: {fileID: 3109197416260603858, guid: 82feee85331ff864097a2f041d5fd59d, type: 3}
+    aName: YetiSound3
+  - aSource: {fileID: 8316186058659710760, guid: 2985e5f36409cde41bbc95baca4b64c3, type: 3}
+    aName: YetiSound4

@@ -101,9 +101,9 @@ public class Enemy : MonoBehaviour
             {
                 if (curWeapon != null)
                 {
-                    if (curWeapon.GetType() == typeof(Sword))
+                    if (curWeapon.GetType() == typeof(Melee))
                     {
-                        Sword sword = (Sword)curWeapon;
+                        Melee sword = (Melee)curWeapon;
                         if (sword.swingTimer <= 0)
                         {
                             stop = true;

@@ -150,8 +150,8 @@ public class Stats : MonoBehaviour
         if (GetComponent<Gun>())
             GetComponent<Gun>().enabled = false;
 
-        if (GetComponentInChildren<Sword>())
-            GetComponentInChildren<Sword>().enabled = false;
+        if (GetComponentInChildren<Melee>())
+            GetComponentInChildren<Melee>().enabled = false;
 
         if(hasDeadAnim)
             yield return new WaitForSeconds(4);

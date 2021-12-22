@@ -48,8 +48,8 @@ public class PlayerController : MonoBehaviour
 
     private Stats m_stats;
 
-    public Sword mainHand;
-    public Sword offHand;
+    public Melee mainHand;
+    public Melee offHand;
 
     private int currComboIdx = 0;
 
@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour
     private bool attemptEat;
 
     public AudioSource walkSound;
+
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -81,6 +83,19 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (isDead)
+        {
+
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("MikkoHideOut");
+            }
+
+
+            return;
+        }
+           
+
         if (m_transform.position.y < -20)
             GetComponent<Stats>().TakeDmg(10000);
         
@@ -106,7 +121,7 @@ public class PlayerController : MonoBehaviour
         if (!AllowMovement)
             return;
 
-        if(Input.GetKeyDown(KeyCode.E))
+        /*if(Input.GetKeyDown(KeyCode.E))
         {
             if(m_allowDash && canDash)
             {
@@ -114,11 +129,12 @@ public class PlayerController : MonoBehaviour
                 dashTimerForUI = 0;
                 m_anim.SetTrigger("Charge");
             }     
-        }
+        }*/
+
         if(comboStarted)
         {
             comboTimer += 1 * Time.deltaTime;
-            if (comboTimer > 1.5)
+            if (comboTimer > 3)
             {
                 GameManager gm = FindObjectOfType<GameManager>();
                 comboTimer = 0;
@@ -144,34 +160,48 @@ public class PlayerController : MonoBehaviour
                 if(gm.boboFace != null)
                     gm.boboFace.sprite = gm.boboAngry;
 
-                if (currComboIdx >= sf.loadedSave.currentMaxCombo)
+                /*if (currComboIdx >= sf.loadedSave.currentMaxCombo)
                 {
                     currComboIdx = 0;
                 }
                 else
                 {
                     currComboIdx++;
-                }
-                switch(currComboIdx)
-                {
+                }*/
+
+                //Debug.Log(currComboIdx);
+
+                switch (currComboIdx)
+                {      
                     case 0:
                         m_anim.SetTrigger("Attack1");
                         m_anim.speed = mainHand.swingTimerMax;
                         mainHand.Swing();
+                        currComboIdx++;
+                        SoundManager.PlayASource("YetiSound1");
                         break;
                     case 1:
                         m_anim.SetTrigger("Attack2");
                         m_anim.speed = mainHand.swingTimerMax;
                         offHand.Swing();
+                        SoundManager.PlayASource("YetiSound2");
+                        if (currComboIdx < sf.loadedSave.currentMaxCombo)
+                            currComboIdx++;
+                        else
+                        {
+                            currComboIdx = 0;
+                            comboTimer = 3;
+                        } 
                         break;
                     case 2:
                         m_anim.SetTrigger("Attack3");
                         mainHand.Swing();
                         offHand.Swing();
+                        currComboIdx = 0;
+                        SoundManager.PlayASource("YetiSound3");
                         break;
                 }
-             
-                
+
                 //SoundManager.PlayASource("Swing");
             }
         }
@@ -188,6 +218,7 @@ public class PlayerController : MonoBehaviour
         if (attemptEat)
             return;
 
+        SoundManager.PlayASource("YetiShout");
         AllowMovement = false;
         m_anim.SetTrigger("Eat");
         attemptEat = true;
@@ -298,12 +329,20 @@ public class PlayerController : MonoBehaviour
     {
         m_anim.SetTrigger("Death");
         AllowMovement = false;
+        isDead = true;
 
         if (GetComponent<Gun>())
             GetComponent<Gun>().enabled = false;
 
-        if (GetComponentInChildren<Sword>())
-            GetComponentInChildren<Sword>().enabled = false;
+        if (GetComponentInChildren<Melee>())
+            GetComponentInChildren<Melee>().enabled = false;
+
+
+        //reset save data
+        //go to mikko scene
+
+        FindObjectOfType<SaveFile>().loadedSave = new SaveData();
+        FindObjectOfType<SaveFile>().NewSave();
     }
 
     public void OnTriggerStay(Collider other)
@@ -317,7 +356,7 @@ public class PlayerController : MonoBehaviour
             // do something
             // heal?
             // score?
-            m_stats.Heal(m_stats.maxHealth, 5);
+            m_stats.Heal(m_stats.maxHealth / 2, 5);
             //add exp?
 
             Destroy(e.gameObject);

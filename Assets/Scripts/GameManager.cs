@@ -64,6 +64,11 @@ public class GameManager : MonoBehaviour
         stats.maxHealth = saveFile.loadedSave.maxHealth;
         stats.health = saveFile.loadedSave.maxHealth;
         pController.speed = saveFile.loadedSave.movementSpeed;
+
+        Melee[] weapons = player.GetComponentsInChildren<Melee>();
+        for(int i = 0; i < weapons.Length; i++)
+            weapons[i].damage = saveFile.loadedSave.attackDamage;
+
     }
 
     // Update is called once per frame
@@ -76,6 +81,10 @@ public class GameManager : MonoBehaviour
         if(currTime > timeLimit)
         {
             stats.health -= (coldDmgPerTick - saveFile.loadedSave.coldResistance); //needs to be tweaked to a more cooler variation thing
+
+            if (stats.health <= 0)
+                FindObjectOfType<PlayerController>().Dead();
+
             currTime = 0;
         }
 

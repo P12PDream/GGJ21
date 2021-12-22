@@ -58,6 +58,7 @@ public class SaveFile : MonoBehaviour
         loadedSave = new SaveData();
         loadedSave.movementSpeed = 5;
         loadedSave.maxHealth = 100;
+        loadedSave.attackDamage = 15;
         //add other default/starting stats here
     }
 

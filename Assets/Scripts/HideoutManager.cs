@@ -105,7 +105,7 @@ public class HideoutManager : MonoBehaviour
     }
     public void UpgradeAttackPower()
     {
-        statsFile.loadedSave.attackDamage += 1;
+        statsFile.loadedSave.attackDamage += 5;
         statsFile.loadedSave.statPoints -= 1;
         UpdateStats();
     }
